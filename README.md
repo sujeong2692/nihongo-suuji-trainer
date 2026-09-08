@@ -42,7 +42,13 @@
 
 키보드: `Space`/`Enter` 정답 보기·확인, `1`~`4` 채점/선택.
 
-## 실행
+## 독립 실행형 HTML (서버 불필요)
+
+JDK나 서버 없이 **더블클릭만으로 바로 여는** 단일 HTML 파일도 있습니다: [standalone/nihongo-suuji-trainer.html](standalone/nihongo-suuji-trainer.html).
+329개 항목 데이터, 큰 수 읽기 엔진, API 로직을 모두 브라우저 안에 넣었고, 진도는 그 브라우저의 localStorage에 저장됩니다(다른 브라우저·PC에는 공유되지 않음).
+데이터나 화면을 고친 뒤에는 `python3 standalone/build.py` 로 다시 생성하면 됩니다.
+
+## 실행 (서버 버전)
 
 JDK 17 이상이 필요합니다 (예: `winget install Microsoft.OpenJDK.21`).
 

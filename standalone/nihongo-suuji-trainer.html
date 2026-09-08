@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>数</text></svg>">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>日本語 数字 집중 암기</title>
+<style>
+:root {
+  --paper: #f6f1e7;
+  --paper-2: #fffdf8;
+  --ink: #23201c;
+  --ink-2: #5d564c;
+  --line: #e2d9c8;
+  --accent: #2c5f8a;
+  --accent-2: #204a6d;
+  --new: #c9c1b2;
+  --learning: #e0a534;
+  --mastered: #3f9a63;
+  --due: #d95f45;
+  --kanji-font: "Noto Sans JP", "Noto Sans CJK JP", "Yu Gothic", "Meiryo", "MS Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  --ui-font: "Segoe UI", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { color-scheme: light; }
+body {
+  margin: 0;
+  font-family: var(--ui-font);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.5;
+}
+[lang="ja"], .ja { font-family: var(--kanji-font); }
+button { font: inherit; cursor: pointer; }
+a { color: inherit; }
+.hidden { display: none !important; }
+.muted { color: var(--ink-2); font-size: .9rem; }
+.center { text-align: center; }
+code { background: #e3e9ee; padding: 0 .3em; border-radius: 4px; }
+kbd {
+  display: inline-block; margin-left: .45em; padding: 0 .4em; border-radius: 4px;
+  border: 1px solid rgba(0,0,0,.25); background: rgba(255,255,255,.55);
+  font: .72rem/1.5 var(--ui-font); color: var(--ink-2);
+}
+
+/* ---------- header ---------- */
+.top {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .8rem 1.5rem;
+  padding: .8rem 1.4rem; background: var(--paper-2); border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; z-index: 10;
+}
+.brand { display: flex; align-items: center; gap: .8rem; text-decoration: none; }
+.brand-kanji {
+  width: 48px; height: 48px; border-radius: 10px; background: var(--accent); color: #fff;
+  font: 700 30px/48px var(--kanji-font); text-align: center;
+}
+.brand-text { display: flex; flex-direction: column; line-height: 1.25; }
+.brand-text strong { font-size: 1.15rem; }
+.brand-text small { color: var(--ink-2); }
+.tabs { display: flex; gap: .2rem; flex-wrap: wrap; }
+.tabs a {
+  padding: .45rem .9rem; border-radius: 999px; text-decoration: none; font-weight: 600; color: var(--ink-2);
+}
+.tabs a:hover { background: #e9eef2; }
+.tabs a.active { background: var(--ink); color: #fff; }
+
+main { max-width: 1100px; margin: 0 auto; padding: 1.4rem 1.2rem 3rem; }
+.view { display: none; }
+.view.active { display: block; animation: fade .18s ease-out; }
+@keyframes fade { from { opacity: 0; transform: translateY(4px);} to { opacity: 1; transform: none; } }
+
+.card {
+  background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px;
+  padding: 1.2rem 1.4rem; margin-bottom: 1.2rem;
+}
+.card h2 { margin: 0 0 .8rem; font-size: 1.1rem; }
+.card-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.card-head h2 { margin: 0; }
+.howto ol { padding-left: 1.3rem; margin: 0 0 .6rem; }
+.howto li { margin: .3rem 0; }
+
+/* ---------- buttons ---------- */
+button {
+  border: 1px solid var(--line); background: #fff; color: var(--ink);
+  padding: .5rem .95rem; border-radius: 9px; transition: background .12s, transform .06s;
+}
+button:hover { background: #eef2f5; }
+button:active { transform: translateY(1px); }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+button.primary:hover { background: var(--accent-2); }
+button.big { font-size: 1.05rem; padding: .7rem 1.6rem; }
+button.link { border: 0; background: none; color: var(--ink-2); text-decoration: underline; padding: 0; }
+button.link:hover { color: var(--accent); }
+button.small { padding: .25rem .6rem; font-size: .82rem; }
+
+/* ---------- dashboard ---------- */
+.hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .8rem; margin-bottom: 1.2rem; }
+.stat {
+  background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px; padding: .9rem 1rem;
+  border-top: 4px solid var(--new);
+}
+.stat .num { font-size: 2rem; font-weight: 700; line-height: 1.1; }
+.stat .lbl { color: var(--ink-2); font-size: .85rem; }
+.stat.st-mastered { border-top-color: var(--mastered); }
+.stat.st-learning { border-top-color: var(--learning); }
+.stat.st-due { border-top-color: var(--due); }
+
+.bignum-card { border-top: 4px solid var(--accent); }
+.bignum-result {
+  margin-top: .9rem; padding: 1rem; background: #eef4f8; border: 1px solid #cddce6; border-radius: 12px;
+}
+.bignum-result .reading { font: 500 1.9rem/1.3 var(--kanji-font); color: var(--accent-2); }
+.bignum-result .display { color: var(--ink-2); margin-bottom: .3rem; }
+.bignum-result .steps { margin-top: .5rem; font-size: .88rem; color: var(--ink-2); }
+.bignum-result .steps div { margin: .1rem 0; }
+
+.grade-rows { display: flex; flex-direction: column; gap: .55rem; }
+.grow { display: grid; grid-template-columns: 150px 1fr auto; gap: .8rem; align-items: center; }
+.grow .g-label { font-weight: 700; }
+.grow .g-bar { height: 16px; border-radius: 8px; overflow: hidden; background: var(--new); display: flex; }
+.grow .g-bar i { display: block; height: 100%; }
+.grow .g-bar .m { background: var(--mastered); }
+.grow .g-bar .l { background: var(--learning); }
+.grow .g-nums { font-size: .8rem; color: var(--ink-2); margin-top: .15rem; }
+.grow .g-nums b { color: var(--ink); }
+.grow .g-actions { display: flex; gap: .3rem; flex-wrap: wrap; }
+.legend { margin: .9rem 0 0; font-size: .8rem; color: var(--ink-2); }
+.sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin: 0 .3em 0 .9em; }
+.sw-mastered { background: var(--mastered); }
+.sw-learning { background: var(--learning); }
+.sw-new { background: var(--new); }
+
+/* ---------- list ---------- */
+.toolbar { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin-bottom: 1rem; }
+.chips { display: flex; flex-wrap: wrap; gap: .3rem; }
+.chip {
+  padding: .3rem .75rem; border-radius: 999px; border: 1px solid var(--line); background: #fff;
+  font-weight: 600;
+}
+.chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+select, input[type="search"], input[type="text"] {
+  font: inherit; padding: .45rem .7rem; border: 1px solid var(--line); border-radius: 9px; background: #fff; color: var(--ink);
+}
+input[type="search"] { min-width: 240px; flex: 1; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: .5rem; }
+.tile {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .15rem;
+  padding: .6rem .4rem; border-radius: 10px; border: 1px solid var(--line); background: #fff;
+  border-bottom-width: 4px; text-align: center;
+}
+.tile .k { font: 500 1.4rem/1.2 var(--kanji-font); }
+.tile .r { font-size: .78rem; color: var(--accent-2); font-family: var(--kanji-font); }
+.tile .m { font-size: .68rem; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.tile.st-new { border-bottom-color: var(--new); }
+.tile.st-learning { border-bottom-color: var(--learning); }
+.tile.st-mastered { border-bottom-color: var(--mastered); }
+.tile.is-due { background: #fdf1ee; }
+.tile.is-irregular { box-shadow: inset 0 0 0 1px #e0a534; }
+.empty { padding: 2rem; text-align: center; color: var(--ink-2); }
+
+/* ---------- badges ---------- */
+.badge {
+  display: inline-block; padding: .1rem .55rem; border-radius: 999px; font-size: .75rem; font-weight: 600;
+  background: #e5ecf1; color: var(--ink-2); margin-right: .3rem;
+}
+.badge.st-new { background: #e9e4d9; }
+.badge.st-learning { background: #fbe7bf; color: #7a5200; }
+.badge.st-mastered { background: #d5efdf; color: #1d5c37; }
+.badge.due { background: #fadcd3; color: #8f2b20; }
+.badge.irregular { background: #fdeccb; color: #8a5a00; }
+
+/* ---------- readings ---------- */
+.rd { display: flex; gap: .6rem; align-items: baseline; margin: .2rem 0; font-family: var(--kanji-font); font-size: 1.15rem; }
+.rd .lbl { font: 600 .72rem var(--ui-font); color: #fff; background: var(--ink-2); border-radius: 4px; padding: 0 .4em; white-space: nowrap; }
+.rd .lbl.on { background: var(--accent); }
+.korean { font-size: 1.35rem; font-weight: 700; margin: .3rem 0; }
+.note-line { font-size: .85rem; color: #8a5a00; background: #fdf3de; border-radius: 8px; padding: .4rem .6rem; margin-top: .4rem; }
+
+/* ---------- flashcards ---------- */
+.progress { height: 8px; background: #e0e8ee; border-radius: 4px; overflow: hidden; margin-bottom: .4rem; }
+.progress .bar { height: 100%; width: 0; background: var(--accent); transition: width .2s; }
+.flash-meta { display: flex; justify-content: space-between; color: var(--ink-2); font-size: .85rem; margin-bottom: .8rem; }
+.fcard {
+  background: var(--paper-2); border: 1px solid var(--line); border-radius: 18px; min-height: 300px;
+  display: flex; align-items: center; justify-content: center; padding: 1.5rem; margin-bottom: 1rem; cursor: pointer;
+  box-shadow: 0 8px 24px rgba(30,50,70,.06);
+}
+.fcard .big { font: 500 4.5rem/1.2 var(--kanji-font); text-align: center; }
+.fcard .front-reading { text-align: center; }
+.fcard .front-reading .reading-big { font: 500 3rem/1.3 var(--kanji-font); }
+.back { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: center; width: 100%; max-width: 640px; }
+.back .big { font: 500 3.2rem/1.2 var(--kanji-font); }
+.back .hist { font-size: .8rem; color: var(--ink-2); margin-top: .5rem; }
+.actions { display: flex; justify-content: center; gap: .6rem; flex-wrap: wrap; margin-bottom: .8rem; }
+.actions.rate button {
+  min-width: 120px; padding: .6rem .8rem; display: flex; flex-direction: column; align-items: center; gap: .05rem; font-weight: 600;
+}
+.actions.rate button small { font-weight: 400; color: var(--ink-2); font-size: .72rem; }
+.r-again { border-color: #e0a89e; background: #fbeae6; }
+.r-hard { border-color: #e6c48a; background: #fdf1da; }
+.r-good { border-color: #a6d3b6; background: #e5f5ea; }
+.r-easy { border-color: #9dc2e6; background: #e5f0fb; }
+
+/* ---------- quiz mode toggle ---------- */
+.quiz-mode-toggle { display: flex; gap: .4rem; margin-bottom: 1rem; }
+.qmode, .wmode {
+  padding: .5rem 1.1rem; border-radius: 999px; font-weight: 600; border: 1px solid var(--line); background: #fff;
+}
+.qmode.active, .wmode.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* ---------- quiz ---------- */
+.qcard { background: var(--paper-2); border: 1px solid var(--line); border-radius: 18px; padding: 1.5rem; margin-bottom: 1rem; }
+.q-prompt { text-align: center; margin-bottom: 1.2rem; }
+.q-prompt .big { font: 500 3.4rem/1.2 var(--kanji-font); }
+.q-prompt .sub { color: var(--ink-2); font-size: .9rem; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .6rem; }
+.choice {
+  text-align: left; padding: .8rem 1rem; font-size: 1.15rem; border-radius: 12px; display: flex; gap: .7rem; align-items: center;
+  font-family: var(--kanji-font);
+}
+.choice .idx { font: 600 .8rem var(--ui-font); color: #fff; background: var(--ink-2); border-radius: 6px; padding: .1rem .5rem; }
+.choice.correct { background: #d5efdf; border-color: var(--mastered); }
+.choice.wrong { background: #fadcd3; border-color: var(--due); }
+.choice:disabled { cursor: default; opacity: .85; }
+.q-reveal { margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--line); }
+.q-reveal .big { font: 500 2.4rem/1.2 var(--kanji-font); }
+.result-list { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
+
+/* ---------- dictation / writing ---------- */
+.write-prompt-card {
+  background: var(--paper-2); border: 1px solid var(--line); border-radius: 18px; padding: 2rem; margin-bottom: 1rem;
+  text-align: center;
+}
+.write-prompt-card .big { font: 500 4rem/1.3 var(--kanji-font); }
+.write-input-row { display: flex; gap: .6rem; margin-bottom: 1rem; }
+.write-input-row input { flex: 1; font-size: 1.2rem; padding: .7rem 1rem; font-family: var(--kanji-font); }
+.write-result { padding: 1rem; border-radius: 12px; margin-bottom: 1rem; }
+.write-result.ok { background: #e1f3e8; border: 1px solid var(--mastered); }
+.write-result.bad { background: #fbe6e1; border: 1px solid var(--due); }
+.write-result .expected { font: 500 1.5rem/1.3 var(--kanji-font); margin-top: .3rem; }
+.write-result .steps { margin-top: .5rem; font-size: .85rem; color: var(--ink-2); }
+
+/* ---------- modal ---------- */
+.modal {
+  position: fixed; inset: 0; background: rgba(20,30,40,.45); display: flex; align-items: center; justify-content: center;
+  z-index: 50; padding: 1rem;
+}
+.modal-box {
+  background: var(--paper-2); border-radius: 18px; padding: 1.5rem; max-width: 640px; width: 100%; max-height: 90vh; overflow: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+.detail-big { font: 500 3.5rem/1.2 var(--kanji-font); margin-bottom: .5rem; }
+.detail .prog { font-size: .85rem; color: var(--ink-2); margin: .6rem 0; }
+.detail .actions { justify-content: flex-start; margin-top: 1rem; }
+.modal-close { float: right; }
+
+/* ---------- toast ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: 1.5rem; transform: translateX(-50%); background: var(--ink); color: #fff;
+  padding: .6rem 1.1rem; border-radius: 999px; font-size: .9rem; z-index: 60; box-shadow: 0 6px 20px rgba(0,0,0,.25);
+}
+.foot { text-align: center; color: var(--ink-2); font-size: .78rem; padding: 1rem; border-top: 1px solid var(--line); }
+
+.form-row { display: flex; flex-wrap: wrap; gap: .8rem 1.2rem; align-items: end; }
+.form-row label { display: flex; flex-direction: column; gap: .2rem; font-size: .85rem; color: var(--ink-2); }
+
+@media (max-width: 720px) {
+  .back, .detail { grid-template-columns: 1fr; }
+  .fcard .big { font-size: 3.2rem; }
+  .grow { grid-template-columns: 1fr; }
+  .grow .g-actions { grid-column: 1 / -1; }
+  .brand-text small { display: none; }
+  .write-input-row { flex-direction: column; }
+}
+
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#dash">
+    <span class="brand-kanji" lang="ja">数</span>
+    <span class="brand-text">
+      <strong>일본어 숫자 집중 암기</strong>
+      <small>수사·조수사·날짜·시간·나이 · 간격 반복 · 퀴즈 · 받아쓰기</small>
+    </span>
+  </a>
+  <nav class="tabs">
+    <a href="#dash" data-view="dash">대시보드</a>
+    <a href="#list" data-view="list">사전</a>
+    <a href="#flash" data-view="flash">플래시카드</a>
+    <a href="#quiz" data-view="quiz">퀴즈</a>
+    <a href="#write" data-view="write">받아쓰기</a>
+  </nav>
+</header>
+
+<main>
+  <!-- ============================ 대시보드 ============================ -->
+  <section id="view-dash" class="view">
+    <div class="hero">
+      <div class="stat"><div class="num" id="d-total">0</div><div class="lbl">전체 항목</div></div>
+      <div class="stat st-mastered"><div class="num" id="d-mastered">0</div><div class="lbl">마스터</div></div>
+      <div class="stat st-learning"><div class="num" id="d-learning">0</div><div class="lbl">학습 중</div></div>
+      <div class="stat st-due"><div class="num" id="d-due">0</div><div class="lbl">오늘 복습할 항목</div></div>
+      <div class="stat"><div class="num" id="d-today">0</div><div class="lbl">오늘 학습한 항목</div></div>
+    </div>
+
+    <div class="card bignum-card">
+      <div class="card-head">
+        <h2>큰 수 읽기 연습</h2>
+        <span class="muted">암기가 아니라 규칙으로 읽는 연습 · 진도 저장 안 됨</span>
+      </div>
+      <p class="muted">아무 숫자나 입력하면 정확한 일본어 읽기와 자릿수별 풀이를 보여줍니다.</p>
+      <div class="form-row">
+        <input id="dash-bignum-input" type="text" inputmode="numeric" placeholder="예: 123456789" style="min-width:220px">
+        <button class="primary" id="dash-bignum-go">읽어주기</button>
+      </div>
+      <div id="dash-bignum-result" class="bignum-result hidden"></div>
+      <div class="actions" style="justify-content:flex-start; margin-top:.8rem">
+        <button id="dash-bignum-quiz">큰 수 퀴즈 시작</button>
+        <button id="dash-bignum-write">큰 수 받아쓰기 시작</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h2>카테고리별 진도</h2>
+        <button class="primary" id="dash-review-all">오늘 복습 시작</button>
+      </div>
+      <div id="cat-rows" class="grade-rows"></div>
+      <p class="legend">
+        <span class="sw sw-mastered"></span>마스터(복습 간격 21일 이상)
+        <span class="sw sw-learning"></span>학습 중
+        <span class="sw sw-new"></span>미학습
+      </p>
+    </div>
+
+    <div class="card howto">
+      <h2>학습 방법</h2>
+      <ol>
+        <li><strong>사전</strong>에서 카테고리(기초 수사·조수사·날짜·시간·나이)별로 항목을 훑어보고, 이미 아는 것은 <em>아는 항목으로 표시</em>합니다.</li>
+        <li><strong>플래시카드</strong>로 매일 새 항목 10개 + 복습 카드를 학습합니다. 기억 정도에 따라 다음 복습일이 자동으로 정해집니다(SM-2 알고리즘).</li>
+        <li><strong>퀴즈</strong>로 4지선다 점검을 합니다. 항목 퀴즈뿐 아니라 규칙 기반의 <em>큰 수 읽기 퀴즈</em>도 있습니다.</li>
+        <li><strong>받아쓰기</strong>에서 숫자·날짜·조수사 표현을 보고 히라가나로 직접 타이핑해 정답과 비교합니다.</li>
+      </ol>
+      <p class="muted">이 파일은 서버 없이 브라우저에서 단독으로 동작합니다. 진도는 이 브라우저의 localStorage에 저장되므로, 같은 브라우저로 이 파일을 다시 열면 유지됩니다(다른 브라우저·PC·시크릿 모드에는 저장되지 않습니다). 큰 수 읽기는 규칙 기반 연습이라 개별 진도는 저장하지 않습니다.</p>
+    </div>
+  </section>
+
+  <!-- ============================ 사전 ============================ -->
+  <section id="view-list" class="view">
+    <div class="toolbar">
+      <div class="chips" id="list-cats"></div>
+      <select id="list-sub"></select>
+      <select id="list-status">
+        <option value="all">전체 상태</option>
+        <option value="new">미학습</option>
+        <option value="learning">학습 중</option>
+        <option value="mastered">마스터</option>
+        <option value="due">오늘 복습</option>
+      </select>
+      <input id="list-q" type="search" placeholder="표현 · 읽기(はち/ハチ) · 뜻 검색" autocomplete="off">
+      <span id="list-count" class="muted"></span>
+    </div>
+    <div id="list-grid" class="grid suuji-grid"></div>
+  </section>
+
+  <!-- ============================ 플래시카드 ============================ -->
+  <section id="view-flash" class="view">
+    <div class="card settings" id="flash-settings">
+      <h2>플래시카드 (간격 반복 학습)</h2>
+      <div class="form-row">
+        <label>카테고리 <select id="flash-cat" class="cat-select"></select></label>
+        <label>세부 <select id="flash-sub" class="sub-select"></select></label>
+        <label>앞면
+          <select id="flash-front">
+            <option value="prompt">표현 → 읽기·뜻</option>
+            <option value="reading">읽기 → 표현</option>
+          </select>
+        </label>
+        <label>새 항목
+          <select id="flash-new">
+            <option value="5">5개</option>
+            <option value="10" selected>10개</option>
+            <option value="20">20개</option>
+            <option value="0">0 (복습만)</option>
+          </select>
+        </label>
+        <label>카드 수
+          <select id="flash-limit">
+            <option value="10">10장</option>
+            <option value="20" selected>20장</option>
+            <option value="50">50장</option>
+            <option value="100">100장</option>
+          </select>
+        </label>
+        <button class="primary" id="flash-start">시작</button>
+      </div>
+      <p class="muted" id="flash-info">복습 예정 카드가 먼저 나오고, 그 뒤에 새 항목이 이어집니다.</p>
+    </div>
+
+    <div id="flash-stage" class="hidden">
+      <div class="progress"><div class="bar" id="flash-bar"></div></div>
+      <div class="flash-meta"><span id="flash-pos"></span><span id="flash-tag"></span></div>
+      <div class="fcard" id="fcard">
+        <div id="fcard-front"></div>
+        <div id="fcard-back" class="hidden"></div>
+      </div>
+      <div class="actions" id="flash-flip-row">
+        <button class="primary big" id="flash-flip">정답 보기 <kbd>Space</kbd></button>
+      </div>
+      <div class="actions rate hidden" id="flash-rate-row">
+        <button data-q="1" class="r-again">다시<kbd>1</kbd><small>바로 재출제</small></button>
+        <button data-q="3" class="r-hard">어려움<kbd>2</kbd><small id="iv-hard"></small></button>
+        <button data-q="4" class="r-good">보통<kbd>3</kbd><small id="iv-good"></small></button>
+        <button data-q="5" class="r-easy">쉬움<kbd>4</kbd><small id="iv-easy"></small></button>
+      </div>
+      <p class="muted center"><button class="link" id="flash-quit">세션 종료</button></p>
+    </div>
+
+    <div id="flash-done" class="card center hidden"></div>
+  </section>
+
+  <!-- ============================ 퀴즈 ============================ -->
+  <section id="view-quiz" class="view">
+    <div class="quiz-mode-toggle">
+      <button class="qmode active" data-qmode="item">항목 퀴즈</button>
+      <button class="qmode" data-qmode="bignum">큰 수 읽기 퀴즈</button>
+    </div>
+
+    <div class="card settings" id="quiz-settings">
+      <h2>항목 퀴즈 (4지선다)</h2>
+      <div class="form-row">
+        <label>카테고리 <select id="quiz-cat" class="cat-select"></select></label>
+        <label>세부 <select id="quiz-sub" class="sub-select"></select></label>
+        <label>유형
+          <select id="quiz-mode">
+            <option value="reading">표현 → 읽기</option>
+            <option value="prompt">읽기 → 표현</option>
+          </select>
+        </label>
+        <label>출제 대상
+          <select id="quiz-pool">
+            <option value="all">전체</option>
+            <option value="studied">학습한 항목만</option>
+          </select>
+        </label>
+        <label>문항 수
+          <select id="quiz-n">
+            <option value="10" selected>10문항</option>
+            <option value="20">20문항</option>
+            <option value="50">50문항</option>
+          </select>
+        </label>
+        <button class="primary" id="quiz-start">시작</button>
+      </div>
+    </div>
+
+    <div class="card settings hidden" id="bignum-quiz-settings">
+      <h2>큰 수 읽기 퀴즈</h2>
+      <div class="form-row">
+        <label>자릿수
+          <select id="bignum-level">
+            <option value="2">두 자리 (10~99)</option>
+            <option value="3" selected>세 자리 (100~999)</option>
+            <option value="4">네 자리 (1000~9999)</option>
+            <option value="man">만 단위 (1만~9999만)</option>
+            <option value="oku">억 단위 (1억~)</option>
+          </select>
+        </label>
+        <label>문항 수
+          <select id="bignum-n">
+            <option value="10" selected>10문항</option>
+            <option value="20">20문항</option>
+          </select>
+        </label>
+        <button class="primary" id="bignum-quiz-start">시작</button>
+      </div>
+    </div>
+
+    <div id="quiz-stage" class="hidden">
+      <div class="progress"><div class="bar" id="quiz-bar"></div></div>
+      <div class="flash-meta"><span id="quiz-pos"></span><span id="quiz-score"></span></div>
+      <div class="qcard">
+        <div class="q-prompt" id="quiz-prompt"></div>
+        <div class="choices" id="quiz-choices"></div>
+        <div class="q-reveal hidden" id="quiz-reveal"></div>
+      </div>
+      <div class="actions"><button class="primary big hidden" id="quiz-next">다음 <kbd>Enter</kbd></button></div>
+    </div>
+
+    <div id="quiz-done" class="card hidden"></div>
+  </section>
+
+  <!-- ============================ 받아쓰기 ============================ -->
+  <section id="view-write" class="view">
+    <div class="quiz-mode-toggle">
+      <button class="wmode active" data-wmode="item">항목 받아쓰기</button>
+      <button class="wmode" data-wmode="bignum">큰 수 받아쓰기</button>
+    </div>
+
+    <div class="card settings" id="write-settings">
+      <h2>항목 받아쓰기</h2>
+      <div class="form-row">
+        <label>카테고리 <select id="write-cat" class="cat-select"></select></label>
+        <label>세부 <select id="write-sub" class="sub-select"></select></label>
+        <label>대상
+          <select id="write-source">
+            <option value="due">오늘 복습 + 새 항목</option>
+            <option value="learning">학습 중인 항목</option>
+            <option value="new">미학습 항목 (순서대로)</option>
+            <option value="random">무작위</option>
+          </select>
+        </label>
+        <label>개수
+          <select id="write-n">
+            <option value="10" selected>10개</option>
+            <option value="20">20개</option>
+            <option value="50">50개</option>
+          </select>
+        </label>
+        <button class="primary" id="write-start">시작</button>
+      </div>
+      <p class="muted">표현을 보고 히라가나 읽기를 입력하세요. 정답을 확인하면 복습 일정에 반영됩니다.</p>
+    </div>
+
+    <div class="card settings hidden" id="bignum-write-settings">
+      <h2>큰 수 받아쓰기</h2>
+      <div class="form-row">
+        <label>자릿수
+          <select id="bw-level">
+            <option value="2">두 자리 (10~99)</option>
+            <option value="3" selected>세 자리 (100~999)</option>
+            <option value="4">네 자리 (1000~9999)</option>
+            <option value="man">만 단위 (1만~9999만)</option>
+            <option value="oku">억 단위 (1억~)</option>
+          </select>
+        </label>
+        <label>개수
+          <select id="bw-n">
+            <option value="10" selected>10개</option>
+            <option value="20">20개</option>
+          </select>
+        </label>
+        <button class="primary" id="bw-start">시작</button>
+      </div>
+      <p class="muted">임의의 숫자를 보고 히라가나로 정확히 읽어 타이핑하세요. 진도는 저장되지 않습니다.</p>
+    </div>
+
+    <div id="write-stage" class="hidden">
+      <div class="progress"><div class="bar" id="write-bar"></div></div>
+      <div class="flash-meta"><span id="write-pos"></span><span id="write-tag"></span></div>
+      <div class="write-prompt-card">
+        <div class="big" id="write-prompt-text"></div>
+        <div class="muted" id="write-prompt-sub"></div>
+      </div>
+      <div class="write-input-row">
+        <input id="write-input" type="text" placeholder="히라가나로 입력 (예: いっぽん)" autocomplete="off" autocapitalize="off">
+        <button class="primary" id="write-check">확인 <kbd>Enter</kbd></button>
+      </div>
+      <div id="write-result" class="write-result hidden"></div>
+      <div class="actions hidden" id="write-next-row">
+        <button class="primary big" id="write-next">다음 <kbd>Enter</kbd></button>
+      </div>
+      <p class="muted center"><button class="link" id="write-quit">세션 종료</button></p>
+    </div>
+
+    <div id="write-done" class="card center hidden"></div>
+  </section>
+</main>
+
+<footer class="foot">기초 한자어·고유어 수사 · 조수사(助数詞) · 날짜·시간·나이 읽기 · 독립 실행형(서버 불필요) · 진도는 이 브라우저의 localStorage에 저장</footer>
+
+<div id="modal" class="modal hidden"><div class="modal-box" id="modal-box"></div></div>
+<div id="toast" class="toast hidden"></div>
+<script>
+const ITEMS_DATA = [{"id": "basic-on-0a", "category": "basic", "subcategory": "onyomi", "prompt": "0", "reading": "ぜろ", "korean": "숫자 0 (ゼロ)", "note": ""}, {"id": "basic-on-0b", "category": "basic", "subcategory": "onyomi", "prompt": "0", "reading": "れい", "korean": "숫자 0 (れい, 격식체)", "note": ""}, {"id": "basic-on-1", "category": "basic", "subcategory": "onyomi", "prompt": "1", "reading": "いち", "korean": "숫자 1", "note": ""}, {"id": "basic-on-2", "category": "basic", "subcategory": "onyomi", "prompt": "2", "reading": "に", "korean": "숫자 2", "note": ""}, {"id": "basic-on-3", "category": "basic", "subcategory": "onyomi", "prompt": "3", "reading": "さん", "korean": "숫자 3", "note": ""}, {"id": "basic-on-4a", "category": "basic", "subcategory": "onyomi", "prompt": "4", "reading": "よん", "korean": "숫자 4 (よん)", "note": ""}, {"id": "basic-on-4b", "category": "basic", "subcategory": "onyomi", "prompt": "4", "reading": "し", "korean": "숫자 4 (し)", "note": ""}, {"id": "basic-on-5", "category": "basic", "subcategory": "onyomi", "prompt": "5", "reading": "ご", "korean": "숫자 5", "note": ""}, {"id": "basic-on-6", "category": "basic", "subcategory": "onyomi", "prompt": "6", "reading": "ろく", "korean": "숫자 6", "note": ""}, {"id": "basic-on-7a", "category": "basic", "subcategory": "onyomi", "prompt": "7", "reading": "なな", "korean": "숫자 7 (なな)", "note": ""}, {"id": "basic-on-7b", "category": "basic", "subcategory": "onyomi", "prompt": "7", "reading": "しち", "korean": "숫자 7 (しち)", "note": ""}, {"id": "basic-on-8", "category": "basic", "subcategory": "onyomi", "prompt": "8", "reading": "はち", "korean": "숫자 8", "note": ""}, {"id": "basic-on-9a", "category": "basic", "subcategory": "onyomi", "prompt": "9", "reading": "きゅう", "korean": "숫자 9 (きゅう)", "note": ""}, {"id": "basic-on-9b", "category": "basic", "subcategory": "onyomi", "prompt": "9", "reading": "く", "korean": "숫자 9 (く)", "note": ""}, {"id": "basic-on-10", "category": "basic", "subcategory": "onyomi", "prompt": "10", "reading": "じゅう", "korean": "숫자 10", "note": ""}, {"id": "basic-on-100", "category": "basic", "subcategory": "onyomi", "prompt": "100", "reading": "ひゃく", "korean": "숫자 100 (백)", "note": ""}, {"id": "basic-on-1000", "category": "basic", "subcategory": "onyomi", "prompt": "1000", "reading": "せん", "korean": "숫자 1000 (천)", "note": ""}, {"id": "basic-on-10000", "category": "basic", "subcategory": "onyomi", "prompt": "10000", "reading": "いちまん", "korean": "숫자 10000 (1만)", "note": ""}, {"id": "basic-on-100000000", "category": "basic", "subcategory": "onyomi", "prompt": "100000000", "reading": "いちおく", "korean": "숫자 100000000 (1억)", "note": ""}, {"id": "basic-on-1000000000000", "category": "basic", "subcategory": "onyomi", "prompt": "1000000000000", "reading": "いっちょう", "korean": "숫자 1000000000000 (1조)", "note": "촉음화: いち+ちょう→いっちょう"}, {"id": "wago-1", "category": "wago", "subcategory": "native", "prompt": "1", "reading": "ひとつ", "korean": "물건 1개(고유어)", "note": ""}, {"id": "wago-2", "category": "wago", "subcategory": "native", "prompt": "2", "reading": "ふたつ", "korean": "물건 2개(고유어)", "note": ""}, {"id": "wago-3", "category": "wago", "subcategory": "native", "prompt": "3", "reading": "みっつ", "korean": "물건 3개(고유어)", "note": ""}, {"id": "wago-4", "category": "wago", "subcategory": "native", "prompt": "4", "reading": "よっつ", "korean": "물건 4개(고유어)", "note": ""}, {"id": "wago-5", "category": "wago", "subcategory": "native", "prompt": "5", "reading": "いつつ", "korean": "물건 5개(고유어)", "note": ""}, {"id": "wago-6", "category": "wago", "subcategory": "native", "prompt": "6", "reading": "むっつ", "korean": "물건 6개(고유어)", "note": ""}, {"id": "wago-7", "category": "wago", "subcategory": "native", "prompt": "7", "reading": "ななつ", "korean": "물건 7개(고유어)", "note": ""}, {"id": "wago-8", "category": "wago", "subcategory": "native", "prompt": "8", "reading": "やっつ", "korean": "물건 8개(고유어)", "note": ""}, {"id": "wago-9", "category": "wago", "subcategory": "native", "prompt": "9", "reading": "ここのつ", "korean": "물건 9개(고유어)", "note": ""}, {"id": "wago-10", "category": "wago", "subcategory": "native", "prompt": "10", "reading": "とお", "korean": "물건 10개(고유어)", "note": ""}, {"id": "wago-ikutsu", "category": "wago", "subcategory": "native", "prompt": "いくつ(개수)", "reading": "いくつ", "korean": "몇 개?", "note": ""}, {"id": "wago-hatachi", "category": "wago", "subcategory": "native", "prompt": "20歳", "reading": "はたち", "korean": "스무 살 (20세, 불규칙)", "note": "はたち는 20세 전용 불규칙 표현"}, {"id": "place-juu-10", "category": "place", "subcategory": "juu", "prompt": "10", "reading": "じゅう", "korean": "10 (십)", "note": ""}, {"id": "place-juu-20", "category": "place", "subcategory": "juu", "prompt": "20", "reading": "にじゅう", "korean": "20 (이십)", "note": ""}, {"id": "place-juu-30", "category": "place", "subcategory": "juu", "prompt": "30", "reading": "さんじゅう", "korean": "30 (삼십)", "note": ""}, {"id": "place-juu-40", "category": "place", "subcategory": "juu", "prompt": "40", "reading": "よんじゅう", "korean": "40 (사십)", "note": ""}, {"id": "place-juu-50", "category": "place", "subcategory": "juu", "prompt": "50", "reading": "ごじゅう", "korean": "50 (오십)", "note": ""}, {"id": "place-juu-60", "category": "place", "subcategory": "juu", "prompt": "60", "reading": "ろくじゅう", "korean": "60 (육십)", "note": ""}, {"id": "place-juu-70", "category": "place", "subcategory": "juu", "prompt": "70", "reading": "ななじゅう", "korean": "70 (칠십)", "note": ""}, {"id": "place-juu-80", "category": "place", "subcategory": "juu", "prompt": "80", "reading": "はちじゅう", "korean": "80 (팔십)", "note": ""}, {"id": "place-juu-90", "category": "place", "subcategory": "juu", "prompt": "90", "reading": "きゅうじゅう", "korean": "90 (구십)", "note": ""}, {"id": "place-hyaku-100", "category": "place", "subcategory": "hyaku", "prompt": "100", "reading": "ひゃく", "korean": "100 (백)", "note": ""}, {"id": "place-hyaku-200", "category": "place", "subcategory": "hyaku", "prompt": "200", "reading": "にひゃく", "korean": "200 (이백)", "note": ""}, {"id": "place-hyaku-300", "category": "place", "subcategory": "hyaku", "prompt": "300", "reading": "さんびゃく", "korean": "300 (삼백)", "note": "탁음화: ひゃく→びゃく"}, {"id": "place-hyaku-400", "category": "place", "subcategory": "hyaku", "prompt": "400", "reading": "よんひゃく", "korean": "400 (사백)", "note": ""}, {"id": "place-hyaku-500", "category": "place", "subcategory": "hyaku", "prompt": "500", "reading": "ごひゃく", "korean": "500 (오백)", "note": ""}, {"id": "place-hyaku-600", "category": "place", "subcategory": "hyaku", "prompt": "600", "reading": "ろっぴゃく", "korean": "600 (육백)", "note": "촉음화+반탁음화: ろく+ひゃく→ろっぴゃく"}, {"id": "place-hyaku-700", "category": "place", "subcategory": "hyaku", "prompt": "700", "reading": "ななひゃく", "korean": "700 (칠백)", "note": ""}, {"id": "place-hyaku-800", "category": "place", "subcategory": "hyaku", "prompt": "800", "reading": "はっぴゃく", "korean": "800 (팔백)", "note": "촉음화+반탁음화: はち+ひゃく→はっぴゃく"}, {"id": "place-hyaku-900", "category": "place", "subcategory": "hyaku", "prompt": "900", "reading": "きゅうひゃく", "korean": "900 (구백)", "note": ""}, {"id": "place-sen-1000", "category": "place", "subcategory": "sen", "prompt": "1000", "reading": "せん", "korean": "1000 (천)", "note": ""}, {"id": "place-sen-2000", "category": "place", "subcategory": "sen", "prompt": "2000", "reading": "にせん", "korean": "2000 (이천)", "note": ""}, {"id": "place-sen-3000", "category": "place", "subcategory": "sen", "prompt": "3000", "reading": "さんぜん", "korean": "3000 (삼천)", "note": "탁음화: せん→ぜん"}, {"id": "place-sen-4000", "category": "place", "subcategory": "sen", "prompt": "4000", "reading": "よんせん", "korean": "4000 (사천)", "note": ""}, {"id": "place-sen-5000", "category": "place", "subcategory": "sen", "prompt": "5000", "reading": "ごせん", "korean": "5000 (오천)", "note": ""}, {"id": "place-sen-6000", "category": "place", "subcategory": "sen", "prompt": "6000", "reading": "ろくせん", "korean": "6000 (육천)", "note": ""}, {"id": "place-sen-7000", "category": "place", "subcategory": "sen", "prompt": "7000", "reading": "ななせん", "korean": "7000 (칠천)", "note": ""}, {"id": "place-sen-8000", "category": "place", "subcategory": "sen", "prompt": "8000", "reading": "はっせん", "korean": "8000 (팔천)", "note": "촉음화: はち+せん→はっせん"}, {"id": "place-sen-9000", "category": "place", "subcategory": "sen", "prompt": "9000", "reading": "きゅうせん", "korean": "9000 (구천)", "note": ""}, {"id": "place-man-10000", "category": "place", "subcategory": "man", "prompt": "10000", "reading": "いちまん", "korean": "10000 (1만)", "note": ""}, {"id": "place-man-20000", "category": "place", "subcategory": "man", "prompt": "20000", "reading": "にまん", "korean": "20000 (2만)", "note": ""}, {"id": "place-man-30000", "category": "place", "subcategory": "man", "prompt": "30000", "reading": "さんまん", "korean": "30000 (3만)", "note": ""}, {"id": "place-man-40000", "category": "place", "subcategory": "man", "prompt": "40000", "reading": "よんまん", "korean": "40000 (4만)", "note": ""}, {"id": "place-man-50000", "category": "place", "subcategory": "man", "prompt": "50000", "reading": "ごまん", "korean": "50000 (5만)", "note": ""}, {"id": "place-man-60000", "category": "place", "subcategory": "man", "prompt": "60000", "reading": "ろくまん", "korean": "60000 (6만)", "note": ""}, {"id": "place-man-70000", "category": "place", "subcategory": "man", "prompt": "70000", "reading": "ななまん", "korean": "70000 (7만)", "note": ""}, {"id": "place-man-80000", "category": "place", "subcategory": "man", "prompt": "80000", "reading": "はちまん", "korean": "80000 (8만)", "note": ""}, {"id": "place-man-90000", "category": "place", "subcategory": "man", "prompt": "90000", "reading": "きゅうまん", "korean": "90000 (9만)", "note": ""}, {"id": "age-1", "category": "age", "subcategory": "sai", "prompt": "1歳", "reading": "いっさい", "korean": "1세", "note": "촉음화: いち+さい→いっさい"}, {"id": "age-2", "category": "age", "subcategory": "sai", "prompt": "2歳", "reading": "にさい", "korean": "2세", "note": ""}, {"id": "age-3", "category": "age", "subcategory": "sai", "prompt": "3歳", "reading": "さんさい", "korean": "3세", "note": ""}, {"id": "age-4", "category": "age", "subcategory": "sai", "prompt": "4歳", "reading": "よんさい", "korean": "4세", "note": ""}, {"id": "age-5", "category": "age", "subcategory": "sai", "prompt": "5歳", "reading": "ごさい", "korean": "5세", "note": ""}, {"id": "age-6", "category": "age", "subcategory": "sai", "prompt": "6歳", "reading": "ろくさい", "korean": "6세", "note": ""}, {"id": "age-7", "category": "age", "subcategory": "sai", "prompt": "7歳", "reading": "ななさい", "korean": "7세", "note": ""}, {"id": "age-8", "category": "age", "subcategory": "sai", "prompt": "8歳", "reading": "はっさい", "korean": "8세", "note": "촉음화: はち+さい→はっさい"}, {"id": "age-9", "category": "age", "subcategory": "sai", "prompt": "9歳", "reading": "きゅうさい", "korean": "9세", "note": ""}, {"id": "age-10", "category": "age", "subcategory": "sai", "prompt": "10歳", "reading": "じゅっさい", "korean": "10세", "note": "じっさい도 가능(전통적 표기)"}, {"id": "age-30", "category": "age", "subcategory": "sai", "prompt": "30歳", "reading": "さんじゅっさい", "korean": "30세", "note": "촉음화: じゅう+さい→じゅっさい"}, {"id": "age-40", "category": "age", "subcategory": "sai", "prompt": "40歳", "reading": "よんじゅっさい", "korean": "40세", "note": "촉음화: じゅう+さい→じゅっさい"}, {"id": "age-50", "category": "age", "subcategory": "sai", "prompt": "50歳", "reading": "ごじゅっさい", "korean": "50세", "note": "촉음화: じゅう+さい→じゅっさい"}, {"id": "age-60", "category": "age", "subcategory": "sai", "prompt": "60歳", "reading": "ろくじゅっさい", "korean": "60세", "note": "촉음화: じゅう+さい→じゅっさい"}, {"id": "age-70", "category": "age", "subcategory": "sai", "prompt": "70歳", "reading": "ななじゅっさい", "korean": "70세", "note": "촉음화: じゅう+さい→じゅっさい"}, {"id": "age-80", "category": "age", "subcategory": "sai", "prompt": "80歳", "reading": "はちじゅっさい", "korean": "80세", "note": "촉음화: じゅう+さい→じゅっさい"}, {"id": "age-90", "category": "age", "subcategory": "sai", "prompt": "90歳", "reading": "きゅうじゅっさい", "korean": "90세", "note": "촉음화: じゅう+さい→じゅっさい"}, {"id": "age-100", "category": "age", "subcategory": "sai", "prompt": "100歳", "reading": "ひゃくさい", "korean": "100세", "note": ""}, {"id": "age-nansai", "category": "age", "subcategory": "sai", "prompt": "何歳", "reading": "なんさい", "korean": "몇 살?", "note": ""}, {"id": "date-day-1", "category": "date", "subcategory": "day", "prompt": "1日", "reading": "ついたち", "korean": "1일", "note": "고유 훈독(불규칙)"}, {"id": "date-day-2", "category": "date", "subcategory": "day", "prompt": "2日", "reading": "ふつか", "korean": "2일", "note": "고유 훈독(불규칙)"}, {"id": "date-day-3", "category": "date", "subcategory": "day", "prompt": "3日", "reading": "みっか", "korean": "3일", "note": "고유 훈독(불규칙)"}, {"id": "date-day-4", "category": "date", "subcategory": "day", "prompt": "4日", "reading": "よっか", "korean": "4일", "note": "고유 훈독(불규칙)"}, {"id": "date-day-5", "category": "date", "subcategory": "day", "prompt": "5日", "reading": "いつか", "korean": "5일", "note": "고유 훈독(불규칙)"}, {"id": "date-day-6", "category": "date", "subcategory": "day", "prompt": "6日", "reading": "むいか", "korean": "6일", "note": "고유 훈독(불규칙)"}, {"id": "date-day-7", "category": "date", "subcategory": "day", "prompt": "7日", "reading": "なのか", "korean": "7일", "note": "고유 훈독(불규칙)"}, {"id": "date-day-8", "category": "date", "subcategory": "day", "prompt": "8日", "reading": "ようか", "korean": "8일", "note": "고유 훈독(불규칙)"}, {"id": "date-day-9", "category": "date", "subcategory": "day", "prompt": "9日", "reading": "ここのか", "korean": "9일", "note": "고유 훈독(불규칙)"}, {"id": "date-day-10", "category": "date", "subcategory": "day", "prompt": "10日", "reading": "とおか", "korean": "10일", "note": "고유 훈독(불규칙)"}, {"id": "date-day-11", "category": "date", "subcategory": "day", "prompt": "11日", "reading": "じゅういちにち", "korean": "11일", "note": ""}, {"id": "date-day-12", "category": "date", "subcategory": "day", "prompt": "12日", "reading": "じゅうににち", "korean": "12일", "note": ""}, {"id": "date-day-13", "category": "date", "subcategory": "day", "prompt": "13日", "reading": "じゅうさんにち", "korean": "13일", "note": ""}, {"id": "date-day-14", "category": "date", "subcategory": "day", "prompt": "14日", "reading": "じゅうよっか", "korean": "14일", "note": "고유 훈독(불규칙)"}, {"id": "date-day-15", "category": "date", "subcategory": "day", "prompt": "15日", "reading": "じゅうごにち", "korean": "15일", "note": ""}, {"id": "date-day-16", "category": "date", "subcategory": "day", "prompt": "16日", "reading": "じゅうろくにち", "korean": "16일", "note": ""}, {"id": "date-day-17", "category": "date", "subcategory": "day", "prompt": "17日", "reading": "じゅうしちにち", "korean": "17일", "note": "しち로 읽음(なな 아님)"}, {"id": "date-day-18", "category": "date", "subcategory": "day", "prompt": "18日", "reading": "じゅうはちにち", "korean": "18일", "note": ""}, {"id": "date-day-19", "category": "date", "subcategory": "day", "prompt": "19日", "reading": "じゅうくにち", "korean": "19일", "note": "く로 읽음(きゅう 아님)"}, {"id": "date-day-20", "category": "date", "subcategory": "day", "prompt": "20日", "reading": "はつか", "korean": "20일", "note": "고유 훈독(불규칙)"}, {"id": "date-day-21", "category": "date", "subcategory": "day", "prompt": "21日", "reading": "にじゅういちにち", "korean": "21일", "note": ""}, {"id": "date-day-22", "category": "date", "subcategory": "day", "prompt": "22日", "reading": "にじゅうににち", "korean": "22일", "note": ""}, {"id": "date-day-23", "category": "date", "subcategory": "day", "prompt": "23日", "reading": "にじゅうさんにち", "korean": "23일", "note": ""}, {"id": "date-day-24", "category": "date", "subcategory": "day", "prompt": "24日", "reading": "にじゅうよっか", "korean": "24일", "note": "고유 훈독(불규칙)"}, {"id": "date-day-25", "category": "date", "subcategory": "day", "prompt": "25日", "reading": "にじゅうごにち", "korean": "25일", "note": ""}, {"id": "date-day-26", "category": "date", "subcategory": "day", "prompt": "26日", "reading": "にじゅうろくにち", "korean": "26일", "note": ""}, {"id": "date-day-27", "category": "date", "subcategory": "day", "prompt": "27日", "reading": "にじゅうしちにち", "korean": "27일", "note": ""}, {"id": "date-day-28", "category": "date", "subcategory": "day", "prompt": "28日", "reading": "にじゅうはちにち", "korean": "28일", "note": ""}, {"id": "date-day-29", "category": "date", "subcategory": "day", "prompt": "29日", "reading": "にじゅうくにち", "korean": "29일", "note": ""}, {"id": "date-day-30", "category": "date", "subcategory": "day", "prompt": "30日", "reading": "さんじゅうにち", "korean": "30일", "note": ""}, {"id": "date-day-31", "category": "date", "subcategory": "day", "prompt": "31日", "reading": "さんじゅういちにち", "korean": "31일", "note": ""}, {"id": "date-day-nan", "category": "date", "subcategory": "day", "prompt": "何日", "reading": "なんにち", "korean": "며칠?/몇 일?", "note": ""}, {"id": "date-month-1", "category": "date", "subcategory": "month", "prompt": "1月", "reading": "いちがつ", "korean": "1월", "note": ""}, {"id": "date-month-2", "category": "date", "subcategory": "month", "prompt": "2月", "reading": "にがつ", "korean": "2월", "note": ""}, {"id": "date-month-3", "category": "date", "subcategory": "month", "prompt": "3月", "reading": "さんがつ", "korean": "3월", "note": ""}, {"id": "date-month-4", "category": "date", "subcategory": "month", "prompt": "4月", "reading": "しがつ", "korean": "4월", "note": "불규칙 발음"}, {"id": "date-month-5", "category": "date", "subcategory": "month", "prompt": "5月", "reading": "ごがつ", "korean": "5월", "note": ""}, {"id": "date-month-6", "category": "date", "subcategory": "month", "prompt": "6月", "reading": "ろくがつ", "korean": "6월", "note": ""}, {"id": "date-month-7", "category": "date", "subcategory": "month", "prompt": "7月", "reading": "しちがつ", "korean": "7월", "note": "불규칙 발음"}, {"id": "date-month-8", "category": "date", "subcategory": "month", "prompt": "8月", "reading": "はちがつ", "korean": "8월", "note": ""}, {"id": "date-month-9", "category": "date", "subcategory": "month", "prompt": "9月", "reading": "くがつ", "korean": "9월", "note": "불규칙 발음"}, {"id": "date-month-10", "category": "date", "subcategory": "month", "prompt": "10月", "reading": "じゅうがつ", "korean": "10월", "note": ""}, {"id": "date-month-11", "category": "date", "subcategory": "month", "prompt": "11月", "reading": "じゅういちがつ", "korean": "11월", "note": ""}, {"id": "date-month-12", "category": "date", "subcategory": "month", "prompt": "12月", "reading": "じゅうにがつ", "korean": "12월", "note": ""}, {"id": "date-month-nan", "category": "date", "subcategory": "month", "prompt": "何月", "reading": "なんがつ", "korean": "몇 월?", "note": ""}, {"id": "date-weekday-mon", "category": "date", "subcategory": "weekday", "prompt": "月曜日", "reading": "げつようび", "korean": "월요일", "note": ""}, {"id": "date-weekday-tue", "category": "date", "subcategory": "weekday", "prompt": "火曜日", "reading": "かようび", "korean": "화요일", "note": ""}, {"id": "date-weekday-wed", "category": "date", "subcategory": "weekday", "prompt": "水曜日", "reading": "すいようび", "korean": "수요일", "note": ""}, {"id": "date-weekday-thu", "category": "date", "subcategory": "weekday", "prompt": "木曜日", "reading": "もくようび", "korean": "목요일", "note": ""}, {"id": "date-weekday-fri", "category": "date", "subcategory": "weekday", "prompt": "金曜日", "reading": "きんようび", "korean": "금요일", "note": ""}, {"id": "date-weekday-sat", "category": "date", "subcategory": "weekday", "prompt": "土曜日", "reading": "どようび", "korean": "토요일", "note": ""}, {"id": "date-weekday-sun", "category": "date", "subcategory": "weekday", "prompt": "日曜日", "reading": "にちようび", "korean": "일요일", "note": ""}, {"id": "date-weekday-nan", "category": "date", "subcategory": "weekday", "prompt": "何曜日", "reading": "なんようび", "korean": "무슨 요일?", "note": ""}, {"id": "time-hour-1", "category": "time", "subcategory": "hour", "prompt": "1時", "reading": "いちじ", "korean": "1시", "note": ""}, {"id": "time-hour-2", "category": "time", "subcategory": "hour", "prompt": "2時", "reading": "にじ", "korean": "2시", "note": ""}, {"id": "time-hour-3", "category": "time", "subcategory": "hour", "prompt": "3時", "reading": "さんじ", "korean": "3시", "note": ""}, {"id": "time-hour-4", "category": "time", "subcategory": "hour", "prompt": "4時", "reading": "よじ", "korean": "4시", "note": "불규칙 발음"}, {"id": "time-hour-5", "category": "time", "subcategory": "hour", "prompt": "5時", "reading": "ごじ", "korean": "5시", "note": ""}, {"id": "time-hour-6", "category": "time", "subcategory": "hour", "prompt": "6時", "reading": "ろくじ", "korean": "6시", "note": ""}, {"id": "time-hour-7", "category": "time", "subcategory": "hour", "prompt": "7時", "reading": "しちじ", "korean": "7시", "note": "불규칙 발음"}, {"id": "time-hour-8", "category": "time", "subcategory": "hour", "prompt": "8時", "reading": "はちじ", "korean": "8시", "note": ""}, {"id": "time-hour-9", "category": "time", "subcategory": "hour", "prompt": "9時", "reading": "くじ", "korean": "9시", "note": "불규칙 발음"}, {"id": "time-hour-10", "category": "time", "subcategory": "hour", "prompt": "10時", "reading": "じゅうじ", "korean": "10시", "note": ""}, {"id": "time-hour-11", "category": "time", "subcategory": "hour", "prompt": "11時", "reading": "じゅういちじ", "korean": "11시", "note": ""}, {"id": "time-hour-12", "category": "time", "subcategory": "hour", "prompt": "12時", "reading": "じゅうにじ", "korean": "12시", "note": ""}, {"id": "time-hour-nan", "category": "time", "subcategory": "hour", "prompt": "何時", "reading": "なんじ", "korean": "몇 시?", "note": ""}, {"id": "time-minute-1", "category": "time", "subcategory": "minute", "prompt": "1分", "reading": "いっぷん", "korean": "1분", "note": "촉음+반탁음(ふ→ぷ)"}, {"id": "time-minute-2", "category": "time", "subcategory": "minute", "prompt": "2分", "reading": "にふん", "korean": "2분", "note": ""}, {"id": "time-minute-3", "category": "time", "subcategory": "minute", "prompt": "3分", "reading": "さんぷん", "korean": "3분", "note": "반탁음(ふ→ぷ)"}, {"id": "time-minute-4", "category": "time", "subcategory": "minute", "prompt": "4分", "reading": "よんぷん", "korean": "4분", "note": "반탁음(ふ→ぷ)"}, {"id": "time-minute-5", "category": "time", "subcategory": "minute", "prompt": "5分", "reading": "ごふん", "korean": "5분", "note": ""}, {"id": "time-minute-6", "category": "time", "subcategory": "minute", "prompt": "6分", "reading": "ろっぷん", "korean": "6분", "note": "촉음+반탁음(ふ→ぷ)"}, {"id": "time-minute-7", "category": "time", "subcategory": "minute", "prompt": "7分", "reading": "ななふん", "korean": "7분", "note": ""}, {"id": "time-minute-8", "category": "time", "subcategory": "minute", "prompt": "8分", "reading": "はっぷん", "korean": "8분", "note": "촉음+반탁음(ふ→ぷ)"}, {"id": "time-minute-9", "category": "time", "subcategory": "minute", "prompt": "9分", "reading": "きゅうふん", "korean": "9분", "note": ""}, {"id": "time-minute-10", "category": "time", "subcategory": "minute", "prompt": "10分", "reading": "じゅっぷん", "korean": "10분", "note": "촉음+반탁음(ふ→ぷ), じっぷん도 허용"}, {"id": "time-minute-15", "category": "time", "subcategory": "minute", "prompt": "15分", "reading": "じゅうごふん", "korean": "15분", "note": ""}, {"id": "time-minute-20", "category": "time", "subcategory": "minute", "prompt": "20分", "reading": "にじゅっぷん", "korean": "20분", "note": "촉음+반탁음(ふ→ぷ)"}, {"id": "time-minute-30", "category": "time", "subcategory": "minute", "prompt": "30分", "reading": "さんじゅっぷん", "korean": "30분", "note": "촉음+반탁음(ふ→ぷ)"}, {"id": "time-minute-han", "category": "time", "subcategory": "minute", "prompt": "30分(半)", "reading": "はん", "korean": "30분(반)", "note": "半(はん)으로도 표현"}, {"id": "time-minute-40", "category": "time", "subcategory": "minute", "prompt": "40分", "reading": "よんじゅっぷん", "korean": "40분", "note": ""}, {"id": "time-minute-50", "category": "time", "subcategory": "minute", "prompt": "50分", "reading": "ごじゅっぷん", "korean": "50분", "note": ""}, {"id": "time-minute-60", "category": "time", "subcategory": "minute", "prompt": "60分", "reading": "ろくじゅっぷん", "korean": "60분", "note": ""}, {"id": "time-minute-nan", "category": "time", "subcategory": "minute", "prompt": "何分", "reading": "なんぷん", "korean": "몇 분?", "note": ""}, {"id": "time-second-1", "category": "time", "subcategory": "second", "prompt": "1秒", "reading": "いちびょう", "korean": "1초", "note": ""}, {"id": "time-second-nan", "category": "time", "subcategory": "second", "prompt": "何秒", "reading": "なんびょう", "korean": "몇 초?", "note": ""}, {"id": "time-second-30", "category": "time", "subcategory": "second", "prompt": "30秒", "reading": "さんじゅうびょう", "korean": "30초", "note": ""}, {"id": "counter-hon-1", "category": "counter", "subcategory": "hon", "prompt": "1本", "reading": "いっぽん", "korean": "연필 등 가늘고 긴 것 1개", "note": "촉음화+반탁음화(っ+h→p)"}, {"id": "counter-hon-2", "category": "counter", "subcategory": "hon", "prompt": "2本", "reading": "にほん", "korean": "연필 등 가늘고 긴 것 2개", "note": ""}, {"id": "counter-hon-3", "category": "counter", "subcategory": "hon", "prompt": "3本", "reading": "さんぼん", "korean": "연필 등 가늘고 긴 것 3개", "note": "탁음화(ん+h→b)"}, {"id": "counter-hon-4", "category": "counter", "subcategory": "hon", "prompt": "4本", "reading": "よんほん", "korean": "연필 등 가늘고 긴 것 4개", "note": ""}, {"id": "counter-hon-5", "category": "counter", "subcategory": "hon", "prompt": "5本", "reading": "ごほん", "korean": "연필 등 가늘고 긴 것 5개", "note": ""}, {"id": "counter-hon-6", "category": "counter", "subcategory": "hon", "prompt": "6本", "reading": "ろっぽん", "korean": "연필 등 가늘고 긴 것 6개", "note": "촉음화+반탁음화(っ+h→p)"}, {"id": "counter-hon-7", "category": "counter", "subcategory": "hon", "prompt": "7本", "reading": "ななほん", "korean": "연필 등 가늘고 긴 것 7개", "note": ""}, {"id": "counter-hon-8", "category": "counter", "subcategory": "hon", "prompt": "8本", "reading": "はっぽん", "korean": "연필 등 가늘고 긴 것 8개", "note": "촉음화+반탁음화(っ+h→p)"}, {"id": "counter-hon-9", "category": "counter", "subcategory": "hon", "prompt": "9本", "reading": "きゅうほん", "korean": "연필 등 가늘고 긴 것 9개", "note": ""}, {"id": "counter-hon-10", "category": "counter", "subcategory": "hon", "prompt": "10本", "reading": "じゅっぽん", "korean": "연필 등 가늘고 긴 것 10개", "note": "촉음화+반탁음화(っ+h→p), じっぽん도 허용"}, {"id": "counter-hon-nan", "category": "counter", "subcategory": "hon", "prompt": "何本", "reading": "なんぼん", "korean": "가늘고 긴 것이 몇 개인지 묻는 말", "note": "탁음화(ん+h→b)"}, {"id": "counter-mai-1", "category": "counter", "subcategory": "mai", "prompt": "1枚", "reading": "いちまい", "korean": "종이 등 얇고 평평한 것 1장", "note": ""}, {"id": "counter-mai-2", "category": "counter", "subcategory": "mai", "prompt": "2枚", "reading": "にまい", "korean": "종이 등 얇고 평평한 것 2장", "note": ""}, {"id": "counter-mai-3", "category": "counter", "subcategory": "mai", "prompt": "3枚", "reading": "さんまい", "korean": "종이 등 얇고 평평한 것 3장", "note": ""}, {"id": "counter-mai-4", "category": "counter", "subcategory": "mai", "prompt": "4枚", "reading": "よんまい", "korean": "종이 등 얇고 평평한 것 4장", "note": ""}, {"id": "counter-mai-5", "category": "counter", "subcategory": "mai", "prompt": "5枚", "reading": "ごまい", "korean": "종이 등 얇고 평평한 것 5장", "note": ""}, {"id": "counter-mai-6", "category": "counter", "subcategory": "mai", "prompt": "6枚", "reading": "ろくまい", "korean": "종이 등 얇고 평평한 것 6장", "note": ""}, {"id": "counter-mai-7", "category": "counter", "subcategory": "mai", "prompt": "7枚", "reading": "ななまい", "korean": "종이 등 얇고 평평한 것 7장", "note": ""}, {"id": "counter-mai-8", "category": "counter", "subcategory": "mai", "prompt": "8枚", "reading": "はちまい", "korean": "종이 등 얇고 평평한 것 8장", "note": ""}, {"id": "counter-mai-9", "category": "counter", "subcategory": "mai", "prompt": "9枚", "reading": "きゅうまい", "korean": "종이 등 얇고 평평한 것 9장", "note": ""}, {"id": "counter-mai-10", "category": "counter", "subcategory": "mai", "prompt": "10枚", "reading": "じゅうまい", "korean": "종이 등 얇고 평평한 것 10장", "note": ""}, {"id": "counter-mai-nan", "category": "counter", "subcategory": "mai", "prompt": "何枚", "reading": "なんまい", "korean": "얇고 평평한 것이 몇 장인지 묻는 말", "note": ""}, {"id": "counter-hiki-1", "category": "counter", "subcategory": "hiki", "prompt": "1匹", "reading": "いっぴき", "korean": "작은 동물 1마리", "note": "촉음화+반탁음화(っ+h→p)"}, {"id": "counter-hiki-2", "category": "counter", "subcategory": "hiki", "prompt": "2匹", "reading": "にひき", "korean": "작은 동물 2마리", "note": ""}, {"id": "counter-hiki-3", "category": "counter", "subcategory": "hiki", "prompt": "3匹", "reading": "さんびき", "korean": "작은 동물 3마리", "note": "탁음화(ん+h→b)"}, {"id": "counter-hiki-4", "category": "counter", "subcategory": "hiki", "prompt": "4匹", "reading": "よんひき", "korean": "작은 동물 4마리", "note": ""}, {"id": "counter-hiki-5", "category": "counter", "subcategory": "hiki", "prompt": "5匹", "reading": "ごひき", "korean": "작은 동물 5마리", "note": ""}, {"id": "counter-hiki-6", "category": "counter", "subcategory": "hiki", "prompt": "6匹", "reading": "ろっぴき", "korean": "작은 동물 6마리", "note": "촉음화+반탁음화(っ+h→p)"}, {"id": "counter-hiki-7", "category": "counter", "subcategory": "hiki", "prompt": "7匹", "reading": "ななひき", "korean": "작은 동물 7마리", "note": ""}, {"id": "counter-hiki-8", "category": "counter", "subcategory": "hiki", "prompt": "8匹", "reading": "はっぴき", "korean": "작은 동물 8마리", "note": "촉음화+반탁음화(っ+h→p)"}, {"id": "counter-hiki-9", "category": "counter", "subcategory": "hiki", "prompt": "9匹", "reading": "きゅうひき", "korean": "작은 동물 9마리", "note": ""}, {"id": "counter-hiki-10", "category": "counter", "subcategory": "hiki", "prompt": "10匹", "reading": "じゅっぴき", "korean": "작은 동물 10마리", "note": "촉음화+반탁음화(っ+h→p), じっぴき도 허용"}, {"id": "counter-hiki-nan", "category": "counter", "subcategory": "hiki", "prompt": "何匹", "reading": "なんびき", "korean": "작은 동물이 몇 마리인지 묻는 말", "note": "탁음화(ん+h→b)"}, {"id": "counter-satsu-1", "category": "counter", "subcategory": "satsu", "prompt": "1冊", "reading": "いっさつ", "korean": "책 등 제본된 것 1권", "note": "촉음화"}, {"id": "counter-satsu-2", "category": "counter", "subcategory": "satsu", "prompt": "2冊", "reading": "にさつ", "korean": "책 등 제본된 것 2권", "note": ""}, {"id": "counter-satsu-3", "category": "counter", "subcategory": "satsu", "prompt": "3冊", "reading": "さんさつ", "korean": "책 등 제본된 것 3권", "note": ""}, {"id": "counter-satsu-4", "category": "counter", "subcategory": "satsu", "prompt": "4冊", "reading": "よんさつ", "korean": "책 등 제본된 것 4권", "note": ""}, {"id": "counter-satsu-5", "category": "counter", "subcategory": "satsu", "prompt": "5冊", "reading": "ごさつ", "korean": "책 등 제본된 것 5권", "note": ""}, {"id": "counter-satsu-6", "category": "counter", "subcategory": "satsu", "prompt": "6冊", "reading": "ろくさつ", "korean": "책 등 제본된 것 6권", "note": "촉음화 없음(예외, 주의)"}, {"id": "counter-satsu-7", "category": "counter", "subcategory": "satsu", "prompt": "7冊", "reading": "ななさつ", "korean": "책 등 제본된 것 7권", "note": ""}, {"id": "counter-satsu-8", "category": "counter", "subcategory": "satsu", "prompt": "8冊", "reading": "はっさつ", "korean": "책 등 제본된 것 8권", "note": "촉음화"}, {"id": "counter-satsu-9", "category": "counter", "subcategory": "satsu", "prompt": "9冊", "reading": "きゅうさつ", "korean": "책 등 제본된 것 9권", "note": ""}, {"id": "counter-satsu-10", "category": "counter", "subcategory": "satsu", "prompt": "10冊", "reading": "じゅっさつ", "korean": "책 등 제본된 것 10권", "note": "촉음화, じっさつ도 허용"}, {"id": "counter-satsu-nan", "category": "counter", "subcategory": "satsu", "prompt": "何冊", "reading": "なんさつ", "korean": "책 등이 몇 권인지 묻는 말", "note": ""}, {"id": "counter-dai-1", "category": "counter", "subcategory": "dai", "prompt": "1台", "reading": "いちだい", "korean": "기계·차량 1대", "note": ""}, {"id": "counter-dai-2", "category": "counter", "subcategory": "dai", "prompt": "2台", "reading": "にだい", "korean": "기계·차량 2대", "note": ""}, {"id": "counter-dai-3", "category": "counter", "subcategory": "dai", "prompt": "3台", "reading": "さんだい", "korean": "기계·차량 3대", "note": ""}, {"id": "counter-dai-4", "category": "counter", "subcategory": "dai", "prompt": "4台", "reading": "よんだい", "korean": "기계·차량 4대", "note": ""}, {"id": "counter-dai-5", "category": "counter", "subcategory": "dai", "prompt": "5台", "reading": "ごだい", "korean": "기계·차량 5대", "note": ""}, {"id": "counter-dai-6", "category": "counter", "subcategory": "dai", "prompt": "6台", "reading": "ろくだい", "korean": "기계·차량 6대", "note": ""}, {"id": "counter-dai-7", "category": "counter", "subcategory": "dai", "prompt": "7台", "reading": "ななだい", "korean": "기계·차량 7대", "note": ""}, {"id": "counter-dai-8", "category": "counter", "subcategory": "dai", "prompt": "8台", "reading": "はちだい", "korean": "기계·차량 8대", "note": ""}, {"id": "counter-dai-9", "category": "counter", "subcategory": "dai", "prompt": "9台", "reading": "きゅうだい", "korean": "기계·차량 9대", "note": ""}, {"id": "counter-dai-10", "category": "counter", "subcategory": "dai", "prompt": "10台", "reading": "じゅうだい", "korean": "기계·차량 10대", "note": ""}, {"id": "counter-dai-nan", "category": "counter", "subcategory": "dai", "prompt": "何台", "reading": "なんだい", "korean": "기계·차량이 몇 대인지 묻는 말", "note": ""}, {"id": "counter-kai-floor-1", "category": "counter", "subcategory": "kai-floor", "prompt": "1階", "reading": "いっかい", "korean": "건물의 1층", "note": "촉음화"}, {"id": "counter-kai-floor-2", "category": "counter", "subcategory": "kai-floor", "prompt": "2階", "reading": "にかい", "korean": "건물의 2층", "note": ""}, {"id": "counter-kai-floor-3", "category": "counter", "subcategory": "kai-floor", "prompt": "3階", "reading": "さんがい", "korean": "건물의 3층", "note": "탁음화(불규칙, さんかい 아님)"}, {"id": "counter-kai-floor-4", "category": "counter", "subcategory": "kai-floor", "prompt": "4階", "reading": "よんかい", "korean": "건물의 4층", "note": ""}, {"id": "counter-kai-floor-5", "category": "counter", "subcategory": "kai-floor", "prompt": "5階", "reading": "ごかい", "korean": "건물의 5층", "note": ""}, {"id": "counter-kai-floor-6", "category": "counter", "subcategory": "kai-floor", "prompt": "6階", "reading": "ろっかい", "korean": "건물의 6층", "note": "촉음화"}, {"id": "counter-kai-floor-7", "category": "counter", "subcategory": "kai-floor", "prompt": "7階", "reading": "ななかい", "korean": "건물의 7층", "note": ""}, {"id": "counter-kai-floor-8", "category": "counter", "subcategory": "kai-floor", "prompt": "8階", "reading": "はっかい", "korean": "건물의 8층", "note": "촉음화"}, {"id": "counter-kai-floor-9", "category": "counter", "subcategory": "kai-floor", "prompt": "9階", "reading": "きゅうかい", "korean": "건물의 9층", "note": ""}, {"id": "counter-kai-floor-10", "category": "counter", "subcategory": "kai-floor", "prompt": "10階", "reading": "じゅっかい", "korean": "건물의 10층", "note": "촉음화, じっかい도 허용"}, {"id": "counter-kai-floor-nan", "category": "counter", "subcategory": "kai-floor", "prompt": "何階", "reading": "なんがい", "korean": "몇 층인지 묻는 말", "note": "탁음화(불규칙), 회화체에서 なんかい도 사용"}, {"id": "counter-hai-1", "category": "counter", "subcategory": "hai", "prompt": "1杯", "reading": "いっぱい", "korean": "잔·그릇에 담긴 것 1잔", "note": "촉음화+반탁음화(っ+h→p)"}, {"id": "counter-hai-2", "category": "counter", "subcategory": "hai", "prompt": "2杯", "reading": "にはい", "korean": "잔·그릇에 담긴 것 2잔", "note": ""}, {"id": "counter-hai-3", "category": "counter", "subcategory": "hai", "prompt": "3杯", "reading": "さんばい", "korean": "잔·그릇에 담긴 것 3잔", "note": "탁음화(ん+h→b)"}, {"id": "counter-hai-4", "category": "counter", "subcategory": "hai", "prompt": "4杯", "reading": "よんはい", "korean": "잔·그릇에 담긴 것 4잔", "note": ""}, {"id": "counter-hai-5", "category": "counter", "subcategory": "hai", "prompt": "5杯", "reading": "ごはい", "korean": "잔·그릇에 담긴 것 5잔", "note": ""}, {"id": "counter-hai-6", "category": "counter", "subcategory": "hai", "prompt": "6杯", "reading": "ろっぱい", "korean": "잔·그릇에 담긴 것 6잔", "note": "촉음화+반탁음화(っ+h→p)"}, {"id": "counter-hai-7", "category": "counter", "subcategory": "hai", "prompt": "7杯", "reading": "ななはい", "korean": "잔·그릇에 담긴 것 7잔", "note": ""}, {"id": "counter-hai-8", "category": "counter", "subcategory": "hai", "prompt": "8杯", "reading": "はっぱい", "korean": "잔·그릇에 담긴 것 8잔", "note": "촉음화+반탁음화(っ+h→p)"}, {"id": "counter-hai-9", "category": "counter", "subcategory": "hai", "prompt": "9杯", "reading": "きゅうはい", "korean": "잔·그릇에 담긴 것 9잔", "note": ""}, {"id": "counter-hai-10", "category": "counter", "subcategory": "hai", "prompt": "10杯", "reading": "じゅっぱい", "korean": "잔·그릇에 담긴 것 10잔", "note": "촉음화+반탁음화(っ+h→p), じっぱい도 허용"}, {"id": "counter-hai-nan", "category": "counter", "subcategory": "hai", "prompt": "何杯", "reading": "なんばい", "korean": "몇 잔인지 묻는 말", "note": "탁음화(ん+h→b)"}, {"id": "counter-kai-times-1", "category": "counter", "subcategory": "kai-times", "prompt": "1回", "reading": "いっかい", "korean": "1회", "note": "촉음화"}, {"id": "counter-kai-times-2", "category": "counter", "subcategory": "kai-times", "prompt": "2回", "reading": "にかい", "korean": "2회", "note": ""}, {"id": "counter-kai-times-3", "category": "counter", "subcategory": "kai-times", "prompt": "3回", "reading": "さんかい", "korean": "3회", "note": ""}, {"id": "counter-kai-times-4", "category": "counter", "subcategory": "kai-times", "prompt": "4回", "reading": "よんかい", "korean": "4회", "note": ""}, {"id": "counter-kai-times-5", "category": "counter", "subcategory": "kai-times", "prompt": "5回", "reading": "ごかい", "korean": "5회", "note": ""}, {"id": "counter-kai-times-6", "category": "counter", "subcategory": "kai-times", "prompt": "6回", "reading": "ろっかい", "korean": "6회", "note": "촉음화"}, {"id": "counter-kai-times-7", "category": "counter", "subcategory": "kai-times", "prompt": "7回", "reading": "ななかい", "korean": "7회", "note": ""}, {"id": "counter-kai-times-8", "category": "counter", "subcategory": "kai-times", "prompt": "8回", "reading": "はっかい", "korean": "8회", "note": "촉음화"}, {"id": "counter-kai-times-9", "category": "counter", "subcategory": "kai-times", "prompt": "9回", "reading": "きゅうかい", "korean": "9회", "note": ""}, {"id": "counter-kai-times-10", "category": "counter", "subcategory": "kai-times", "prompt": "10回", "reading": "じゅっかい", "korean": "10회", "note": "촉음화, じっかい도 허용"}, {"id": "counter-kai-times-nan", "category": "counter", "subcategory": "kai-times", "prompt": "何回", "reading": "なんかい", "korean": "몇 회(번)인지 묻는 말", "note": ""}, {"id": "counter-hito-1", "category": "counter", "subcategory": "hito", "prompt": "1人", "reading": "ひとり", "korean": "사람 1명", "note": "고유어 특수형(불규칙)"}, {"id": "counter-hito-2", "category": "counter", "subcategory": "hito", "prompt": "2人", "reading": "ふたり", "korean": "사람 2명", "note": "고유어 특수형(불규칙)"}, {"id": "counter-hito-3", "category": "counter", "subcategory": "hito", "prompt": "3人", "reading": "さんにん", "korean": "사람 3명", "note": ""}, {"id": "counter-hito-4", "category": "counter", "subcategory": "hito", "prompt": "4人", "reading": "よにん", "korean": "사람 4명", "note": "불규칙(よんにん 아님, 주의)"}, {"id": "counter-hito-5", "category": "counter", "subcategory": "hito", "prompt": "5人", "reading": "ごにん", "korean": "사람 5명", "note": ""}, {"id": "counter-hito-6", "category": "counter", "subcategory": "hito", "prompt": "6人", "reading": "ろくにん", "korean": "사람 6명", "note": ""}, {"id": "counter-hito-7", "category": "counter", "subcategory": "hito", "prompt": "7人", "reading": "しちにん", "korean": "사람 7명", "note": "ななにん도 사용됨"}, {"id": "counter-hito-8", "category": "counter", "subcategory": "hito", "prompt": "8人", "reading": "はちにん", "korean": "사람 8명", "note": ""}, {"id": "counter-hito-9", "category": "counter", "subcategory": "hito", "prompt": "9人", "reading": "きゅうにん", "korean": "사람 9명", "note": "くにん(예스러운 표현)도 사용"}, {"id": "counter-hito-10", "category": "counter", "subcategory": "hito", "prompt": "10人", "reading": "じゅうにん", "korean": "사람 10명", "note": ""}, {"id": "counter-hito-11", "category": "counter", "subcategory": "hito", "prompt": "11人", "reading": "じゅういちにん", "korean": "사람 11명", "note": ""}, {"id": "counter-hito-nan", "category": "counter", "subcategory": "hito", "prompt": "何人", "reading": "なんにん", "korean": "몇 명인지 묻는 말", "note": ""}, {"id": "counter-wa-1", "category": "counter", "subcategory": "wa", "prompt": "1羽", "reading": "いちわ", "korean": "새·토끼 등 1마리", "note": ""}, {"id": "counter-wa-2", "category": "counter", "subcategory": "wa", "prompt": "2羽", "reading": "にわ", "korean": "새·토끼 등 2마리", "note": ""}, {"id": "counter-wa-3", "category": "counter", "subcategory": "wa", "prompt": "3羽", "reading": "さんわ", "korean": "새·토끼 등 3마리", "note": "전통적으로 さんば로도 사용(확인 필요)"}, {"id": "counter-wa-4", "category": "counter", "subcategory": "wa", "prompt": "4羽", "reading": "よんわ", "korean": "새·토끼 등 4마리", "note": ""}, {"id": "counter-wa-5", "category": "counter", "subcategory": "wa", "prompt": "5羽", "reading": "ごわ", "korean": "새·토끼 등 5마리", "note": ""}, {"id": "counter-wa-6", "category": "counter", "subcategory": "wa", "prompt": "6羽", "reading": "ろくわ", "korean": "새·토끼 등 6마리", "note": "일부 자료는 ろっぱ로도 소개(확인 필요)"}, {"id": "counter-wa-7", "category": "counter", "subcategory": "wa", "prompt": "7羽", "reading": "ななわ", "korean": "새·토끼 등 7마리", "note": ""}, {"id": "counter-wa-8", "category": "counter", "subcategory": "wa", "prompt": "8羽", "reading": "はちわ", "korean": "새·토끼 등 8마리", "note": "일부 자료는 はっぱ로 소개하나 표준은 はちわ(확인 필요)"}, {"id": "counter-wa-9", "category": "counter", "subcategory": "wa", "prompt": "9羽", "reading": "きゅうわ", "korean": "새·토끼 등 9마리", "note": ""}, {"id": "counter-wa-10", "category": "counter", "subcategory": "wa", "prompt": "10羽", "reading": "じゅうわ", "korean": "새·토끼 등 10마리", "note": "일부 자료는 じゅっぱ로도 소개(확인 필요)"}, {"id": "counter-wa-nan", "category": "counter", "subcategory": "wa", "prompt": "何羽", "reading": "なんわ", "korean": "새 등이 몇 마리인지 묻는 말", "note": ""}, {"id": "counter-tou-1", "category": "counter", "subcategory": "tou", "prompt": "1頭", "reading": "いっとう", "korean": "큰 동물 1마리", "note": "촉음화"}, {"id": "counter-tou-2", "category": "counter", "subcategory": "tou", "prompt": "2頭", "reading": "にとう", "korean": "큰 동물 2마리", "note": ""}, {"id": "counter-tou-3", "category": "counter", "subcategory": "tou", "prompt": "3頭", "reading": "さんとう", "korean": "큰 동물 3마리", "note": ""}, {"id": "counter-tou-4", "category": "counter", "subcategory": "tou", "prompt": "4頭", "reading": "よんとう", "korean": "큰 동물 4마리", "note": ""}, {"id": "counter-tou-5", "category": "counter", "subcategory": "tou", "prompt": "5頭", "reading": "ごとう", "korean": "큰 동물 5마리", "note": ""}, {"id": "counter-tou-6", "category": "counter", "subcategory": "tou", "prompt": "6頭", "reading": "ろくとう", "korean": "큰 동물 6마리", "note": ""}, {"id": "counter-tou-7", "category": "counter", "subcategory": "tou", "prompt": "7頭", "reading": "ななとう", "korean": "큰 동물 7마리", "note": ""}, {"id": "counter-tou-8", "category": "counter", "subcategory": "tou", "prompt": "8頭", "reading": "はっとう", "korean": "큰 동물 8마리", "note": "촉음화"}, {"id": "counter-tou-9", "category": "counter", "subcategory": "tou", "prompt": "9頭", "reading": "きゅうとう", "korean": "큰 동물 9마리", "note": ""}, {"id": "counter-tou-10", "category": "counter", "subcategory": "tou", "prompt": "10頭", "reading": "じゅっとう", "korean": "큰 동물 10마리", "note": "촉음화, じっとう도 허용"}, {"id": "counter-tou-nan", "category": "counter", "subcategory": "tou", "prompt": "何頭", "reading": "なんとう", "korean": "큰 동물이 몇 마리인지 묻는 말", "note": ""}, {"id": "counter-ko-1", "category": "counter", "subcategory": "ko", "prompt": "1個", "reading": "いっこ", "korean": "물건 1개", "note": "촉음화"}, {"id": "counter-ko-2", "category": "counter", "subcategory": "ko", "prompt": "2個", "reading": "にこ", "korean": "물건 2개", "note": ""}, {"id": "counter-ko-3", "category": "counter", "subcategory": "ko", "prompt": "3個", "reading": "さんこ", "korean": "물건 3개", "note": ""}, {"id": "counter-ko-4", "category": "counter", "subcategory": "ko", "prompt": "4個", "reading": "よんこ", "korean": "물건 4개", "note": ""}, {"id": "counter-ko-5", "category": "counter", "subcategory": "ko", "prompt": "5個", "reading": "ごこ", "korean": "물건 5개", "note": ""}, {"id": "counter-ko-6", "category": "counter", "subcategory": "ko", "prompt": "6個", "reading": "ろっこ", "korean": "물건 6개", "note": "촉음화"}, {"id": "counter-ko-7", "category": "counter", "subcategory": "ko", "prompt": "7個", "reading": "ななこ", "korean": "물건 7개", "note": ""}, {"id": "counter-ko-8", "category": "counter", "subcategory": "ko", "prompt": "8個", "reading": "はっこ", "korean": "물건 8개", "note": "촉음화"}, {"id": "counter-ko-9", "category": "counter", "subcategory": "ko", "prompt": "9個", "reading": "きゅうこ", "korean": "물건 9개", "note": ""}, {"id": "counter-ko-10", "category": "counter", "subcategory": "ko", "prompt": "10個", "reading": "じゅっこ", "korean": "물건 10개", "note": "촉음화, じっこ도 허용"}, {"id": "counter-ko-nan", "category": "counter", "subcategory": "ko", "prompt": "何個", "reading": "なんこ", "korean": "물건이 몇 개인지 묻는 말", "note": ""}, {"id": "counter-soku-1", "category": "counter", "subcategory": "soku", "prompt": "1足", "reading": "いっそく", "korean": "신발 등 1켤레", "note": "촉음화"}, {"id": "counter-soku-2", "category": "counter", "subcategory": "soku", "prompt": "2足", "reading": "にそく", "korean": "신발 등 2켤레", "note": ""}, {"id": "counter-soku-3", "category": "counter", "subcategory": "soku", "prompt": "3足", "reading": "さんぞく", "korean": "신발 등 3켤레", "note": "탁음화"}, {"id": "counter-soku-4", "category": "counter", "subcategory": "soku", "prompt": "4足", "reading": "よんそく", "korean": "신발 등 4켤레", "note": ""}, {"id": "counter-soku-5", "category": "counter", "subcategory": "soku", "prompt": "5足", "reading": "ごそく", "korean": "신발 등 5켤레", "note": ""}, {"id": "counter-soku-6", "category": "counter", "subcategory": "soku", "prompt": "6足", "reading": "ろくそく", "korean": "신발 등 6켤레", "note": ""}, {"id": "counter-soku-7", "category": "counter", "subcategory": "soku", "prompt": "7足", "reading": "ななそく", "korean": "신발 등 7켤레", "note": ""}, {"id": "counter-soku-8", "category": "counter", "subcategory": "soku", "prompt": "8足", "reading": "はっそく", "korean": "신발 등 8켤레", "note": "촉음화"}, {"id": "counter-soku-9", "category": "counter", "subcategory": "soku", "prompt": "9足", "reading": "きゅうそく", "korean": "신발 등 9켤레", "note": ""}, {"id": "counter-soku-10", "category": "counter", "subcategory": "soku", "prompt": "10足", "reading": "じゅっそく", "korean": "신발 등 10켤레", "note": "촉음화, じっそく도 허용"}, {"id": "counter-soku-nan", "category": "counter", "subcategory": "soku", "prompt": "何足", "reading": "なんそく", "korean": "신발 등이 몇 켤레인지 묻는 말", "note": ""}, {"id": "counter-ken-1", "category": "counter", "subcategory": "ken", "prompt": "1軒", "reading": "いっけん", "korean": "집·건물 1채", "note": "촉음화"}, {"id": "counter-ken-2", "category": "counter", "subcategory": "ken", "prompt": "2軒", "reading": "にけん", "korean": "집·건물 2채", "note": ""}, {"id": "counter-ken-3", "category": "counter", "subcategory": "ken", "prompt": "3軒", "reading": "さんげん", "korean": "집·건물 3채", "note": "탁음화(불규칙)"}, {"id": "counter-ken-4", "category": "counter", "subcategory": "ken", "prompt": "4軒", "reading": "よんけん", "korean": "집·건물 4채", "note": ""}, {"id": "counter-ken-5", "category": "counter", "subcategory": "ken", "prompt": "5軒", "reading": "ごけん", "korean": "집·건물 5채", "note": ""}, {"id": "counter-ken-6", "category": "counter", "subcategory": "ken", "prompt": "6軒", "reading": "ろっけん", "korean": "집·건물 6채", "note": "촉음화"}, {"id": "counter-ken-7", "category": "counter", "subcategory": "ken", "prompt": "7軒", "reading": "ななけん", "korean": "집·건물 7채", "note": ""}, {"id": "counter-ken-8", "category": "counter", "subcategory": "ken", "prompt": "8軒", "reading": "はっけん", "korean": "집·건물 8채", "note": "촉음화"}, {"id": "counter-ken-9", "category": "counter", "subcategory": "ken", "prompt": "9軒", "reading": "きゅうけん", "korean": "집·건물 9채", "note": ""}, {"id": "counter-ken-10", "category": "counter", "subcategory": "ken", "prompt": "10軒", "reading": "じゅっけん", "korean": "집·건물 10채", "note": "촉음화, じっけん도 허용"}, {"id": "counter-ken-nan", "category": "counter", "subcategory": "ken", "prompt": "何軒", "reading": "なんげん", "korean": "집이 몇 채인지 묻는 말", "note": "탁음화(불규칙)"}];
+/* Client-side port of the nihongo-suuji-trainer Java backend (ItemRepository, NumberReader,
+   Progress, ProgressStore, Api). Operates entirely in-memory + localStorage, no network. */
+const SuujiEngine = (() => {
+  'use strict';
+
+  // ---- date helpers (mirror java.time.LocalDate.toEpochDay() semantics) ----
+  function toEpochDay(y, m, d) { return Math.floor(Date.UTC(y, m - 1, d) / 86400000); }
+  function todayEpochDay() { const d = new Date(); return toEpochDay(d.getFullYear(), d.getMonth() + 1, d.getDate()); }
+  function epochDayToISO(day) {
+    const dt = new Date(day * 86400000);
+    return `${dt.getUTCFullYear()}-${String(dt.getUTCMonth() + 1).padStart(2, '0')}-${String(dt.getUTCDate()).padStart(2, '0')}`;
+  }
+  function isoToday() { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }
+
+  // ---- Progress (SM-2), mirrors Progress.java ----
+  const MASTERED_INTERVAL = 21;
+  class Progress {
+    constructor(id) {
+      this.id = id; this.reps = 0; this.interval = 0; this.ease = 2.5; this.due = 0;
+      this.lapses = 0; this.seen = 0; this.correct = 0; this.wrong = 0; this.last = 0;
+    }
+    isNew() { return this.seen === 0; }
+    isDue(today) { return this.seen > 0 && this.due <= today; }
+    status(today) {
+      if (this.seen === 0) return 'new';
+      if (this.interval >= MASTERED_INTERVAL) return 'mastered';
+      return 'learning';
+    }
+    rate(q, today) {
+      q = Math.max(0, Math.min(5, q));
+      this.seen++; this.last = today;
+      if (q < 3) {
+        this.wrong++;
+        if (this.reps > 0) this.lapses++;
+        this.reps = 0; this.interval = 0; this.due = today;
+        this.ease = Math.max(1.3, this.ease - 0.2);
+        return;
+      }
+      this.correct++; this.reps++;
+      if (this.reps === 1) this.interval = q === 5 ? 4 : 1;
+      else if (this.reps === 2) this.interval = 6;
+      else this.interval = Math.max(this.interval + 1, Math.round(this.interval * this.ease));
+      this.ease = Math.max(1.3, this.ease + 0.1 - (5 - q) * (0.08 + (5 - q) * 0.02));
+      this.due = today + this.interval;
+    }
+    markMastered(today) {
+      if (this.seen === 0) this.seen = 1;
+      this.reps = Math.max(this.reps, 3);
+      this.interval = Math.max(this.interval, 30);
+      this.due = today + this.interval;
+      this.last = today;
+    }
+    toJson(today) {
+      return {
+        status: this.status(today), reps: this.reps, interval: this.interval, ease: this.ease,
+        due: this.due === 0 ? '' : epochDayToISO(this.due), dueIn: this.due === 0 ? 0 : this.due - today,
+        isDue: this.isDue(today), seen: this.seen, correct: this.correct, wrong: this.wrong,
+        lapses: this.lapses, last: this.last === 0 ? '' : epochDayToISO(this.last),
+      };
+    }
+  }
+
+  // ---- ProgressStore, localStorage-backed ----
+  class ProgressStore {
+    constructor(key) { this.key = key; this.map = new Map(); this.load(); }
+    load() {
+      try {
+        const raw = localStorage.getItem(this.key);
+        if (!raw) return;
+        for (const rec of JSON.parse(raw)) {
+          const p = new Progress(rec.id);
+          Object.assign(p, rec);
+          this.map.set(rec.id, p);
+        }
+      } catch (e) { console.warn('progress load failed', e); }
+    }
+    save() {
+      const arr = [];
+      for (const p of this.map.values()) if (p.seen > 0) arr.push({ ...p });
+      try { localStorage.setItem(this.key, JSON.stringify(arr)); } catch (e) { console.warn('progress save failed', e); }
+    }
+    peek(id) { return this.map.get(id) || new Progress(id); }
+    update(id, fn) {
+      let p = this.map.get(id);
+      if (!p) { p = new Progress(id); this.map.set(id, p); }
+      fn(p); this.save(); return p;
+    }
+    updateAll(ids, fn) {
+      for (const id of ids) {
+        let p = this.map.get(id);
+        if (!p) { p = new Progress(id); this.map.set(id, p); }
+        fn(p);
+      }
+      this.save();
+    }
+    resetAll(ids) { for (const id of ids) this.map.delete(id); this.save(); }
+    reviewedOn(day) { let n = 0; for (const p of this.map.values()) if (p.last === day) n++; return n; }
+  }
+
+  const store = new ProgressStore('suuji_progress_v1');
+
+  // ---- NumberReader, mirrors NumberReader.java exactly (independently verified tables) ----
+  const NR_MAX = 999999999999; // 9999億9999万9999, just under 兆
+  const DIGIT = ['', 'いち', 'に', 'さん', 'よん', 'ご', 'ろく', 'なな', 'はち', 'きゅう'];
+  const JUU = ['', 'じゅう', 'にじゅう', 'さんじゅう', 'よんじゅう', 'ごじゅう', 'ろくじゅう', 'ななじゅう', 'はちじゅう', 'きゅうじゅう'];
+  const HYAKU = ['', 'ひゃく', 'にひゃく', 'さんびゃく', 'よんひゃく', 'ごひゃく', 'ろっぴゃく', 'ななひゃく', 'はっぴゃく', 'きゅうひゃく'];
+  const SEN = ['', 'せん', 'にせん', 'さんぜん', 'よんせん', 'ごせん', 'ろくせん', 'ななせん', 'はっせん', 'きゅうせん'];
+  function readGroup(n) {
+    if (n === 0) return '';
+    const thousands = Math.floor(n / 1000), hundreds = Math.floor(n / 100) % 10, tens = Math.floor(n / 10) % 10, ones = n % 10;
+    return SEN[thousands] + HYAKU[hundreds] + JUU[tens] + DIGIT[ones];
+  }
+  function nrRead(n) {
+    if (n < 0 || n > NR_MAX) throw new Error('out of supported range (0..' + NR_MAX + '): ' + n);
+    if (n === 0) return 'れい';
+    const oku = Math.floor(n / 100000000), rest = n % 100000000;
+    const man = Math.floor(rest / 10000), low = rest % 10000;
+    let s = '';
+    if (oku > 0) s += readGroup(oku) + 'おく';
+    if (man > 0) s += readGroup(man) + 'まん';
+    if (low > 0 || s.length === 0) s += readGroup(low);
+    return s;
+  }
+  function nrDisplay(n) { return n.toLocaleString('en-US'); }
+  function nrBreakdown(n) {
+    const steps = [];
+    if (n === 0) { steps.push('0 = れい'); return steps; }
+    const oku = Math.floor(n / 100000000), rest = n % 100000000;
+    const man = Math.floor(rest / 10000), low = rest % 10000;
+    if (oku > 0) steps.push(oku + '億 = ' + readGroup(oku) + 'おく');
+    if (man > 0) steps.push(man + '万 = ' + readGroup(man) + 'まん');
+    if (low > 0) steps.push(low + ' = ' + readGroup(low));
+    return steps;
+  }
+
+  // ---- item repository ----
+  let ALL = [];
+  let byId = new Map();
+  let byCategory = new Map();
+  let bySubKey = new Map();
+  const subKey = (c, s) => c + '/' + s;
+  function init(data) {
+    ALL = data;
+    byId = new Map(); byCategory = new Map(); bySubKey = new Map();
+    for (const it of ALL) {
+      byId.set(it.id, it);
+      if (!byCategory.has(it.category)) byCategory.set(it.category, []);
+      byCategory.get(it.category).push(it);
+      const k = subKey(it.category, it.subcategory);
+      if (!bySubKey.has(k)) bySubKey.set(k, []);
+      bySubKey.get(k).push(it);
+    }
+  }
+  function itemsByCategory(category) {
+    if (!category || category === 'all') return ALL;
+    return byCategory.get(category) || [];
+  }
+  function itemsBySubcategory(category, subcategory) {
+    if (!subcategory || subcategory === 'all') return itemsByCategory(category);
+    return bySubKey.get(subKey(category, subcategory)) || [];
+  }
+  function categoryTree() {
+    const out = []; const seen = new Set();
+    for (const it of ALL) {
+      const k = subKey(it.category, it.subcategory);
+      if (!seen.has(k)) { seen.add(k); out.push([it.category, it.subcategory]); }
+    }
+    return out;
+  }
+  function categories() {
+    const out = []; const seen = new Set();
+    for (const it of ALL) if (!seen.has(it.category)) { seen.add(it.category); out.push(it.category); }
+    return out;
+  }
+  function normalizeKana(s) {
+    let out = '';
+    for (const c of s) {
+      const code = c.codePointAt(0);
+      out += (code >= 0x30A1 && code <= 0x30F6) ? String.fromCodePoint(code - 0x60) : c;
+    }
+    return out;
+  }
+  function searchItems(query, category, subcategory) {
+    const q = (query || '').trim();
+    const pool = itemsBySubcategory(category, subcategory);
+    if (!q) return pool;
+    const qn = normalizeKana(q);
+    return pool.filter(it => {
+      if (it.prompt.includes(q) || it.korean.includes(q)) return true;
+      return normalizeKana(it.reading).includes(qn);
+    });
+  }
+
+  const CATEGORY_LABEL = {
+    basic: '기초 한자어 수사', wago: '고유어 수사', place: '자릿수 (십·백·천·만)',
+    age: '나이 (歳)', counter: '조수사 (助数詞)', date: '날짜', time: '시간',
+  };
+  function itemToJson(it, p, today) {
+    const obj = { id: it.id, category: it.category, subcategory: it.subcategory, prompt: it.prompt, reading: it.reading, korean: it.korean, note: it.note, irregular: !!it.note };
+    if (p) obj.progress = p.toJson(today);
+    return obj;
+  }
+
+  // ---- helpers mirroring Api.java ----
+  function requireItem(id) {
+    if (!id) throw new Error('id parameter required');
+    const it = byId.get(String(id).trim());
+    if (!it) throw new Error('unknown item id: ' + id);
+    return it;
+  }
+  function intParam(p, name, def, min, max) {
+    const s = p[name];
+    if (s === undefined || s === null || s === '') {
+      if (def < min || def > max) throw new Error(name + ' parameter required');
+      return def;
+    }
+    const v = parseInt(s, 10);
+    if (isNaN(v) || v < min || v > max) throw new Error(name + ' must be between ' + min + ' and ' + max);
+    return v;
+  }
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; }
+    return arr;
+  }
+
+  // ---- routes ----
+  function catJson(cat, label, c) {
+    return { category: cat, label, total: c[0], new: c[1], learning: c[2], mastered: c[3], due: c[4] };
+  }
+  function countItems(list, today) {
+    const c = [0, 0, 0, 0, 0];
+    for (const it of list) {
+      const pr = store.peek(it.id);
+      c[0]++;
+      const st = pr.status(today);
+      if (st === 'new') c[1]++; else if (st === 'learning') c[2]++; else c[3]++;
+      if (pr.isDue(today)) c[4]++;
+    }
+    return c;
+  }
+  function categoriesRoute() {
+    const today = todayEpochDay();
+    const nodes = [];
+    for (const [category, sub] of categoryTree()) {
+      const items = itemsBySubcategory(category, sub);
+      const c = countItems(items, today);
+      nodes.push({ category, categoryLabel: CATEGORY_LABEL[category] || category, subcategory: sub, total: c[0], new: c[1], learning: c[2], mastered: c[3], due: c[4] });
+    }
+    const cats = [];
+    for (const cat of categories()) {
+      const c = countItems(itemsByCategory(cat), today);
+      cats.push({ category: cat, categoryLabel: CATEGORY_LABEL[cat] || cat, total: c[0], new: c[1], learning: c[2], mastered: c[3], due: c[4] });
+    }
+    return { categories: cats, subcategories: nodes };
+  }
+  function listItems(p) {
+    const today = todayEpochDay();
+    const category = p.category || 'all', subcategory = p.subcategory || 'all', status = p.status || 'all';
+    const list = searchItems(p.q || '', category, subcategory);
+    const items = [];
+    for (const it of list) {
+      const pr = store.peek(it.id);
+      if (status !== 'all') {
+        const keep = status === 'due' ? pr.isDue(today) : pr.status(today) === status;
+        if (!keep) continue;
+      }
+      items.push(itemToJson(it, pr, today));
+    }
+    return { total: items.length, items };
+  }
+  function itemDetail(id) {
+    const it = requireItem(id);
+    return itemToJson(it, store.peek(it.id), todayEpochDay());
+  }
+  function stats() {
+    const today = todayEpochDay();
+    const cats = []; const total = [0, 0, 0, 0, 0];
+    for (const cat of categories()) {
+      const c = countItems(itemsByCategory(cat), today);
+      for (let i = 0; i < 5; i++) total[i] += c[i];
+      cats.push(catJson(cat, CATEGORY_LABEL[cat] || cat, c));
+    }
+    return { categories: cats, total: catJson('all', '전체', total), reviewedToday: store.reviewedOn(today), today: isoToday() };
+  }
+  function reviewNext(p) {
+    const today = todayEpochDay();
+    const category = p.category || 'all', subcategory = p.subcategory || 'all';
+    const limit = intParam(p, 'limit', 20, 1, 500);
+    const newLimit = intParam(p, 'new', 10, 0, 500);
+    const due = [], fresh = [];
+    for (const it of itemsBySubcategory(category, subcategory)) {
+      const pr = store.peek(it.id);
+      if (pr.isDue(today)) due.push(it); else if (pr.isNew()) fresh.push(it);
+    }
+    due.sort((a, b) => store.peek(a.id).due - store.peek(b.id).due);
+    const items = [];
+    for (const it of due) { if (items.length >= limit) break; items.push(itemToJson(it, store.peek(it.id), today)); }
+    let added = 0;
+    for (const it of fresh) { if (items.length >= limit || added >= newLimit) break; items.push(itemToJson(it, store.peek(it.id), today)); added++; }
+    return { dueTotal: due.length, newTotal: fresh.length, items };
+  }
+  function review(p) {
+    const it = requireItem(p.id);
+    const q = intParam(p, 'q', -1, 0, 5);
+    const today = todayEpochDay();
+    const pr = store.update(it.id, x => x.rate(q, today));
+    return itemToJson(it, pr, today);
+  }
+
+  function quiz(p) {
+    const category = p.category || 'all', subcategory = p.subcategory || 'all';
+    const mode = p.mode || 'reading';
+    if (!['reading', 'prompt'].includes(mode)) throw new Error('mode must be reading or prompt');
+    const n = intParam(p, 'n', 10, 1, 100);
+    const onlyStudied = p.pool === 'studied';
+    const pool = itemsBySubcategory(category, subcategory);
+    let candidates = pool;
+    if (onlyStudied) {
+      candidates = pool.filter(it => !store.peek(it.id).isNew());
+      if (candidates.length < 4) candidates = pool;
+    }
+    if (candidates.length < 4) throw new Error('이 범위는 문항을 만들기에 항목이 부족합니다 (4개 이상 필요)');
+    const shuffled = shuffle([...candidates]);
+    const questions = shuffled.slice(0, Math.min(n, shuffled.length)).map(it => suujiQuestion(it, mode, pool));
+    return { mode, questions };
+  }
+  function suujiQuestion(it, mode, pool) {
+    const answer = mode === 'reading' ? it.reading : it.prompt;
+    const texts = new Set([answer]);
+    const shuffled = shuffle([...pool]);
+    for (const d of shuffled) {
+      if (texts.size >= 4) break;
+      if (d === it) continue;
+      const t = mode === 'reading' ? d.reading : d.prompt;
+      if (t) texts.add(t);
+    }
+    const choices = shuffle([...texts]);
+    const prompt = mode === 'reading' ? it.prompt : it.reading;
+    return { prompt, choices, answer: choices.indexOf(answer), item: itemToJson(it, store.peek(it.id), todayEpochDay()) };
+  }
+  function quizAnswer(p) {
+    const it = requireItem(p.id);
+    const correct = p.correct === true || p.correct === 'true';
+    const today = todayEpochDay();
+    const pr = store.update(it.id, x => {
+      if (!correct) x.rate(1, today);
+      else if (x.isNew() || x.isDue(today)) x.rate(4, today);
+      else { x.correct++; x.last = today; }
+    });
+    return itemToJson(it, pr, today);
+  }
+
+  function normalizeReading(s) { return (s || '').trim().replace(/ /g, '').replace(/　/g, ''); }
+  function dictationCheck(p) {
+    const it = requireItem(p.id);
+    const typed = normalizeReading(p.reading);
+    const correct = normalizeReading(it.reading);
+    const ok = typed === correct;
+    const today = todayEpochDay();
+    const pr = store.update(it.id, x => x.rate(ok ? 4 : 1, today));
+    return { correct: ok, expected: it.reading, item: itemToJson(it, pr, today) };
+  }
+
+  function levelRange(level) {
+    switch (level) {
+      case '2': return [10, 99];
+      case '3': return [100, 999];
+      case '4': return [1000, 9999];
+      case 'man': return [10000, 99999999];
+      case 'oku': return [100000000, NR_MAX];
+      default: throw new Error('level must be one of 2, 3, 4, man, oku');
+    }
+  }
+  function randomInRange(min, max) { if (max <= min) return min; return min + Math.floor(Math.random() * (max - min + 1)); }
+  function bignumRead(p) {
+    const s = p.number;
+    if (!s) throw new Error('number parameter required');
+    const n = parseInt(String(s).trim().replace(/,/g, ''), 10);
+    if (isNaN(n)) throw new Error('bad number: ' + s);
+    return { number: n, display: nrDisplay(n), reading: nrRead(n), breakdown: nrBreakdown(n) };
+  }
+  function bignumQuiz(p) {
+    const level = p.level || '3';
+    const [min, max] = levelRange(level);
+    const n = intParam(p, 'n', 10, 1, 50);
+    const questions = [];
+    for (let i = 0; i < n; i++) {
+      const target = randomInRange(min, max);
+      const answer = nrRead(target);
+      const texts = new Set([answer]);
+      let guard = 0;
+      while (texts.size < 4 && guard++ < 100) texts.add(nrRead(randomInRange(min, max)));
+      const choices = shuffle([...texts]);
+      questions.push({ number: target, display: nrDisplay(target), choices, answer: choices.indexOf(answer) });
+    }
+    return { level, questions };
+  }
+  function bignumCheck(p) {
+    const s = p.number;
+    if (!s && s !== 0) throw new Error('number parameter required');
+    const n = parseInt(String(s).trim().replace(/,/g, ''), 10);
+    if (isNaN(n)) throw new Error('bad number: ' + s);
+    const typed = normalizeReading(p.reading);
+    const correct = normalizeReading(nrRead(n));
+    const ok = typed === correct;
+    return { correct: ok, expected: nrRead(n), number: n, display: nrDisplay(n), breakdown: nrBreakdown(n) };
+  }
+
+  function mark(p) {
+    const status = p.status || 'mastered';
+    const today = todayEpochDay();
+    let targets = [];
+    if (p.id) targets = [requireItem(p.id).id];
+    else { for (const it of itemsBySubcategory(p.category || 'all', p.subcategory || 'all')) targets.push(it.id); }
+    if (status === 'mastered') store.updateAll(targets, x => x.markMastered(today));
+    else if (status === 'reset') store.resetAll(targets);
+    else throw new Error('status must be mastered or reset');
+    return { updated: targets.length, stats: stats() };
+  }
+
+  function route(method, path, p) {
+    const post = method === 'POST';
+    if (path === '/categories') return categoriesRoute();
+    if (path === '/stats') return stats();
+    if (path === '/items') return listItems(p);
+    if (path.startsWith('/items/')) return itemDetail(decodeURIComponent(path.slice('/items/'.length)));
+    if (path === '/review/next') return reviewNext(p);
+    if (path === '/review' && post) return review(p);
+    if (path === '/quiz') return quiz(p);
+    if (path === '/quiz/answer' && post) return quizAnswer(p);
+    if (path === '/dictation/check' && post) return dictationCheck(p);
+    if (path === '/bignum/read') return bignumRead(p);
+    if (path === '/bignum/quiz') return bignumQuiz(p);
+    if (path === '/bignum/check' && post) return bignumCheck(p);
+    if (path === '/progress/mark' && post) return mark(p);
+    if (path === '/progress/reset' && post) { p.status = 'reset'; return mark(p); }
+    throw new Error('not found: ' + path);
+  }
+
+  return { init, route, NumberReader: { read: nrRead, display: nrDisplay, breakdown: nrBreakdown, MAX: NR_MAX } };
+})();
+
+SuujiEngine.init(ITEMS_DATA);
+/* 일본어 숫자 집중 암기 - frontend (vanilla JS, no build step) */
+(() => {
+  'use strict';
+
+  const $ = (sel, el = document) => el.querySelector(sel);
+  const $$ = (sel, el = document) => Array.from(el.querySelectorAll(sel));
+
+  const STATUS_KO = { new: '미학습', learning: '학습 중', mastered: '마스터' };
+  const CATEGORY_LABEL = {
+    all: '전체', basic: '기초 한자어 수사', wago: '고유어 수사', place: '자릿수',
+    counter: '조수사(助数詞)', date: '날짜', time: '시간', age: '나이',
+  };
+  const SUB_LABEL = {
+    onyomi: '한자어(音読み)', native: '고유어', sai: '~세',
+    juu: '십(十)', hyaku: '백(百)', sen: '천(千)', man: '만(万)',
+    hon: '本 - 가늘고 긴 것', mai: '枚 - 얇고 평평한 것', hiki: '匹 - 작은 동물',
+    satsu: '冊 - 책', dai: '台 - 기계·차량', 'kai-floor': '階 - 층',
+    hai: '杯 - 잔·컵', 'kai-times': '回 - 횟수', hito: '人 - 사람',
+    wa: '羽 - 새·토끼', tou: '頭 - 큰 동물', ko: '個 - 개',
+    soku: '足 - 신발 켤레', ken: '軒 - 집·건물',
+    day: '일(日)', month: '월(月)', weekday: '요일',
+    hour: '시(時)', minute: '분(分)', second: '초(秒)',
+  };
+  function subLabel(sub) { return SUB_LABEL[sub] || sub; }
+
+  // ------------------------------------------------------------------ utils
+  async function api(path, params, method = 'GET') {
+    return SuujiEngine.route(method, path, params || {});
+  }
+
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+  function badgesHtml(it) {
+    const p = it.progress;
+    let html = `<span class="badge">${esc(CATEGORY_LABEL[it.category] || it.category)}</span><span class="badge">${esc(subLabel(it.subcategory))}</span>`;
+    if (it.irregular) html += `<span class="badge irregular">불규칙</span>`;
+    if (p) {
+      html += `<span class="badge st-${p.status}">${STATUS_KO[p.status]}</span>`;
+      if (p.isDue) html += `<span class="badge due">오늘 복습</span>`;
+    }
+    return html;
+  }
+  function progressLine(p) {
+    if (!p || p.seen === 0) return '아직 학습하지 않은 항목입니다.';
+    const due = p.dueIn <= 0 ? '오늘' : `${p.due} (${p.dueIn}일 후)`;
+    return `복습 ${p.seen}회 · 정답 ${p.correct} · 오답 ${p.wrong} · 간격 ${p.interval}일 · 다음 복습 ${due}`;
+  }
+
+  let toastTimer;
+  function toast(msg) {
+    const t = $('#toast');
+    t.textContent = msg;
+    t.classList.remove('hidden');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.add('hidden'), 2200);
+  }
+
+  // ------------------------------------------------------------------ catalog (categories/subcategories)
+  let CATALOG = null;
+  async function loadCatalog() {
+    if (CATALOG) return CATALOG;
+    CATALOG = await api('/categories');
+    return CATALOG;
+  }
+
+  function fillCatSelects() {
+    $$('.cat-select').forEach(sel => {
+      const opts = ['<option value="all">전체</option>'];
+      for (const c of CATALOG.categories) {
+        opts.push(`<option value="${c.category}">${esc(CATEGORY_LABEL[c.category] || c.category)} (${c.total})</option>`);
+      }
+      sel.innerHTML = opts.join('');
+      const sub = document.getElementById(sel.id.replace('-cat', '-sub'));
+      if (sub) {
+        sel.addEventListener('change', () => fillSubSelect(sel, sub));
+        fillSubSelect(sel, sub);
+      }
+    });
+  }
+
+  function fillSubSelect(catSel, subSel) {
+    if (!subSel) return;
+    const cat = catSel.value;
+    const subs = CATALOG.subcategories.filter(s => cat === 'all' || s.category === cat);
+    const opts = ['<option value="all">전체</option>'];
+    for (const s of subs) opts.push(`<option value="${s.subcategory}">${esc(subLabel(s.subcategory))} (${s.total})</option>`);
+    subSel.innerHTML = opts.join('');
+  }
+
+  // ------------------------------------------------------------------ router
+  const onShow = {};
+  let currentView = '';
+  function route() {
+    const h = location.hash.slice(1) || 'dash';
+    const [view, qs] = h.split('?');
+    const params = new URLSearchParams(qs || '');
+    const target = $('#view-' + view) ? view : 'dash';
+    $$('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + target));
+    $$('.tabs a').forEach(a => a.classList.toggle('active', a.dataset.view === target));
+    currentView = target;
+    closeModal();
+    loadCatalog().then(() => { if (onShow[target]) onShow[target](params); });
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', route);
+
+  // ------------------------------------------------------------------ modal
+  function openModal(html) {
+    $('#modal-box').innerHTML = html;
+    $('#modal').classList.remove('hidden');
+  }
+  function closeModal() { $('#modal').classList.add('hidden'); }
+  $('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+
+  async function openDetail(id) {
+    let it;
+    try { it = await api('/items/' + encodeURIComponent(id)); } catch (e) { toast(e.message); return; }
+    openModal(`
+      <button class="modal-close link" data-act="close">닫기 ✕</button>
+      <div class="detail">
+        <div class="detail-big" lang="ja">${esc(it.prompt)}</div>
+        <div>${badgesHtml(it)}</div>
+        <div class="rd" lang="ja"><span class="lbl on">읽기</span><span>${esc(it.reading)}</span></div>
+        <div class="korean">${esc(it.korean)}</div>
+        ${it.note ? `<div class="note-line">${esc(it.note)}</div>` : ''}
+        <div class="prog">${progressLine(it.progress)}</div>
+        <div class="actions">
+          <button data-act="write">받아쓰기 연습</button>
+          <button data-act="mastered">아는 항목으로 표시</button>
+          <button data-act="reset">진도 초기화</button>
+        </div>
+      </div>`);
+    $('#modal-box').onclick = async e => {
+      const act = e.target.closest('[data-act]')?.dataset.act;
+      if (!act) return;
+      if (act === 'close') closeModal();
+      else if (act === 'write') { closeModal(); location.hash = 'write'; setWriteMode('item'); }
+      else if (act === 'mastered' || act === 'reset') {
+        await api('/progress/mark', { id: it.id, status: act }, 'POST');
+        toast(act === 'mastered' ? `마스터로 표시했습니다` : `진도를 초기화했습니다`);
+        openDetail(it.id);
+        if (currentView === 'list') list.load();
+      }
+    };
+  }
+
+  // ------------------------------------------------------------------ dashboard
+  async function renderDash() {
+    let s;
+    try { s = await api('/stats'); } catch (e) { toast(e.message); return; }
+    $('#d-total').textContent = s.total.total;
+    $('#d-mastered').textContent = s.total.mastered;
+    $('#d-learning').textContent = s.total.learning;
+    $('#d-due').textContent = s.total.due;
+    $('#d-today').textContent = s.reviewedToday;
+    $('#cat-rows').innerHTML = s.categories.map(c => {
+      const pm = (c.mastered / c.total * 100).toFixed(1), pl = (c.learning / c.total * 100).toFixed(1);
+      return `<div class="grow">
+        <div class="g-label">${esc(c.label)}</div>
+        <div>
+          <div class="g-bar"><i class="m" style="width:${pm}%"></i><i class="l" style="width:${pl}%"></i></div>
+          <div class="g-nums"><b>${c.mastered}</b> 마스터 · <b>${c.learning}</b> 학습 중 · <b>${c.new}</b> 미학습 / ${c.total}개
+            ${c.due ? ` · <span style="color:var(--due)">복습 ${c.due}</span>` : ''}</div>
+        </div>
+        <div class="g-actions">
+          <button class="small primary" data-go="flash?category=${c.category}&auto=1">학습</button>
+          <button class="small" data-go="list?category=${c.category}">사전</button>
+          <button class="small" data-mark="${c.category}" title="이 카테고리의 모든 항목을 아는 것으로 표시">전부 아는 항목</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+  $('#cat-rows').addEventListener('click', async e => {
+    const go = e.target.closest('[data-go]');
+    if (go) { location.hash = go.dataset.go; return; }
+    const mark = e.target.closest('[data-mark]');
+    if (mark) {
+      const label = CATEGORY_LABEL[mark.dataset.mark] || mark.dataset.mark;
+      if (!confirm(`${label}의 모든 항목을 '아는 항목(마스터)'으로 표시할까요?`)) return;
+      await api('/progress/mark', { category: mark.dataset.mark, status: 'mastered' }, 'POST');
+      toast(`${label} 전체를 마스터로 표시했습니다`);
+      renderDash();
+    }
+  });
+  $('#dash-review-all').addEventListener('click', () => { location.hash = 'flash?category=all&auto=1'; });
+
+  async function dashReadNumber() {
+    const raw = $('#dash-bignum-input').value.trim().replace(/,/g, '');
+    if (!raw || !/^\d+$/.test(raw)) { toast('숫자를 입력하세요'); return; }
+    let d;
+    try { d = await api('/bignum/read', { number: raw }); } catch (e) { toast(e.message); return; }
+    $('#dash-bignum-result').classList.remove('hidden');
+    $('#dash-bignum-result').innerHTML = `
+      <div class="display">${esc(d.display)}</div>
+      <div class="reading" lang="ja">${esc(d.reading)}</div>
+      <div class="steps">${d.breakdown.map(s => `<div>${esc(s)}</div>`).join('')}</div>`;
+  }
+  $('#dash-bignum-go').addEventListener('click', dashReadNumber);
+  $('#dash-bignum-input').addEventListener('keydown', e => { if (e.key === 'Enter') dashReadNumber(); });
+  $('#dash-bignum-quiz').addEventListener('click', () => { location.hash = 'quiz'; setTimeout(() => setQuizMode('bignum'), 0); });
+  $('#dash-bignum-write').addEventListener('click', () => { location.hash = 'write'; setTimeout(() => setWriteMode('bignum'), 0); });
+  onShow.dash = renderDash;
+
+  // ------------------------------------------------------------------ list
+  const list = { category: 'all', subcategory: 'all', status: 'all', q: '', timer: null };
+  list.load = async function () {
+    const grid = $('#list-grid');
+    grid.innerHTML = '<div class="empty">불러오는 중…</div>';
+    let data;
+    try { data = await api('/items', { category: list.category, subcategory: list.subcategory, status: list.status, q: list.q }); }
+    catch (e) { grid.innerHTML = `<div class="empty">${esc(e.message)}</div>`; return; }
+    $('#list-count').textContent = `${data.total}개`;
+    if (!data.items.length) { grid.innerHTML = '<div class="empty">조건에 맞는 항목이 없습니다.</div>'; return; }
+    grid.innerHTML = data.items.map(it => `
+      <button class="tile st-${it.progress.status}${it.progress.isDue ? ' is-due' : ''}${it.irregular ? ' is-irregular' : ''}" data-id="${esc(it.id)}" title="${esc(it.korean)}">
+        <span class="k" lang="ja">${esc(it.prompt)}</span><span class="r" lang="ja">${esc(it.reading)}</span><span class="m">${esc(it.korean)}</span>
+      </button>`).join('');
+  };
+  function renderListChips() {
+    const cats = ['all', ...CATALOG.categories.map(c => c.category)];
+    $('#list-cats').innerHTML = cats.map(c => `<button class="chip${c === list.category ? ' active' : ''}" data-c="${c}">${esc(CATEGORY_LABEL[c] || c)}</button>`).join('');
+  }
+  $('#list-cats').addEventListener('click', e => {
+    const c = e.target.closest('.chip');
+    if (!c) return;
+    list.category = c.dataset.c;
+    list.subcategory = 'all';
+    renderListChips();
+    fillSubSelect({ value: list.category }, $('#list-sub'));
+    $('#list-sub').value = 'all';
+    list.load();
+  });
+  $('#list-sub').addEventListener('change', e => { list.subcategory = e.target.value; list.load(); });
+  $('#list-status').addEventListener('change', e => { list.status = e.target.value; list.load(); });
+  $('#list-q').addEventListener('input', e => {
+    clearTimeout(list.timer);
+    list.timer = setTimeout(() => { list.q = e.target.value; list.load(); }, 250);
+  });
+  $('#list-grid').addEventListener('click', e => {
+    const t = e.target.closest('.tile');
+    if (t) openDetail(t.dataset.id);
+  });
+  onShow.list = params => {
+    if (params.has('category')) list.category = params.get('category');
+    renderListChips();
+    fillSubSelect({ value: list.category }, $('#list-sub'));
+    $('#list-status').value = list.status;
+    list.load();
+  };
+
+  // ------------------------------------------------------------------ flashcards
+  const flash = { queue: [], done: 0, front: 'prompt', again: 0, ok: 0, active: false, cur: null, flipped: false };
+
+  function previewIntervals(it) {
+    const p = it.progress || { reps: 0, interval: 0, ease: 2.5 };
+    const next = q => {
+      const reps = p.reps + 1;
+      if (reps === 1) return q === 5 ? 4 : 1;
+      if (reps === 2) return 6;
+      return Math.max(p.interval + 1, Math.round(p.interval * p.ease));
+    };
+    $('#iv-hard').textContent = `${next(3)}일 후`;
+    $('#iv-good').textContent = `${next(4)}일 후`;
+    $('#iv-easy').textContent = `${next(5)}일 후`;
+  }
+
+  async function flashStart(opts) {
+    const category = opts?.category ?? $('#flash-cat').value;
+    const subcategory = $('#flash-sub').value;
+    const limit = $('#flash-limit').value, nw = $('#flash-new').value;
+    flash.front = $('#flash-front').value;
+    let data;
+    try { data = await api('/review/next', { category, subcategory, limit, new: nw }); } catch (e) { toast(e.message); return; }
+    if (!data.items.length) {
+      $('#flash-info').textContent = data.newTotal === 0 ? '이 범위의 항목을 모두 학습했고 오늘 복습할 카드도 없습니다. 🎉'
+        : '오늘 복습할 카드가 없습니다. "새 항목" 수를 0보다 크게 설정하면 새 항목을 학습할 수 있습니다.';
+      return;
+    }
+    Object.assign(flash, { queue: data.items, done: 0, again: 0, ok: 0, active: true });
+    $('#flash-settings').classList.add('hidden');
+    $('#flash-done').classList.add('hidden');
+    $('#flash-stage').classList.remove('hidden');
+    $('#flash-info').textContent = `복습 ${data.dueTotal}개 · 새 항목 ${data.newTotal}개가 남아 있습니다.`;
+    flashNext();
+  }
+
+  function flashNext() {
+    if (!flash.queue.length) { flashFinish(); return; }
+    flash.cur = flash.queue.shift();
+    flash.flipped = false;
+    const it = flash.cur, p = it.progress;
+    const total = flash.done + flash.queue.length + 1;
+    $('#flash-bar').style.width = (flash.done / total * 100) + '%';
+    $('#flash-pos').textContent = `${flash.done + 1} / ${total}`;
+    $('#flash-tag').textContent = it.requeued ? '재출제' : p.seen === 0 ? '새 항목' : `복습 (${p.status === 'mastered' ? '마스터' : '학습 중'})`;
+    const front = $('#fcard-front');
+    if (flash.front === 'prompt') front.innerHTML = `<div class="big" lang="ja">${esc(it.prompt)}</div>`;
+    else front.innerHTML = `<div class="front-reading"><div class="reading-big" lang="ja">${esc(it.reading)}</div></div>`;
+    front.classList.remove('hidden');
+    $('#fcard-back').classList.add('hidden');
+    $('#flash-flip-row').classList.remove('hidden');
+    $('#flash-rate-row').classList.add('hidden');
+  }
+
+  function flashFlip() {
+    if (flash.flipped || !flash.active) return;
+    flash.flipped = true;
+    const it = flash.cur;
+    $('#fcard-front').classList.add('hidden');
+    $('#fcard-back').innerHTML = `<div class="back">
+        <div class="big" lang="ja">${flash.front === 'prompt' ? esc(it.reading) : esc(it.prompt)}</div>
+        <div>
+          <div>${badgesHtml(it)}</div>
+          <div class="korean">${esc(it.korean)}</div>
+          ${it.note ? `<div class="note-line">${esc(it.note)}</div>` : ''}
+          <div class="hist">${progressLine(it.progress)}</div>
+        </div></div>`;
+    $('#fcard-back').classList.remove('hidden');
+    $('#flash-flip-row').classList.add('hidden');
+    $('#flash-rate-row').classList.remove('hidden');
+    previewIntervals(it);
+  }
+
+  async function flashRate(q) {
+    if (!flash.flipped || !flash.active) return;
+    const it = flash.cur;
+    flash.flipped = false;
+    let res;
+    try { res = await api('/review', { id: it.id, q }, 'POST'); } catch (e) { toast(e.message); return; }
+    it.progress = res.progress;
+    if (q < 3) {
+      flash.again++;
+      it.requeued = true;
+      flash.queue.splice(Math.min(3, flash.queue.length), 0, it);
+    } else {
+      flash.ok++;
+      flash.done++;
+    }
+    flashNext();
+  }
+
+  function flashFinish() {
+    flash.active = false;
+    $('#flash-stage').classList.add('hidden');
+    $('#flash-done').classList.remove('hidden');
+    $('#flash-done').innerHTML = `<h2>세션 완료 🎉</h2>
+      <p>${flash.done}개 학습 · 성공 ${flash.ok}회 · 다시 ${flash.again}회</p>
+      <div class="actions"><button class="primary" id="flash-more">계속 학습</button><button id="flash-settings-btn">설정으로</button></div>`;
+    $('#flash-more').onclick = () => flashStart();
+    $('#flash-settings-btn').onclick = () => { $('#flash-done').classList.add('hidden'); $('#flash-settings').classList.remove('hidden'); };
+  }
+
+  $('#flash-start').addEventListener('click', () => flashStart());
+  $('#flash-flip').addEventListener('click', flashFlip);
+  $('#fcard').addEventListener('click', flashFlip);
+  $('#flash-rate-row').addEventListener('click', e => {
+    const b = e.target.closest('button[data-q]');
+    if (b) flashRate(Number(b.dataset.q));
+  });
+  $('#flash-quit').addEventListener('click', () => { flash.queue = []; flashFinish(); });
+  onShow.flash = params => {
+    if (params.has('category')) $('#flash-cat').value = params.get('category');
+    fillSubSelect($('#flash-cat'), $('#flash-sub'));
+    if (params.get('auto') === '1' && !flash.active) flashStart({ category: params.get('category') });
+  };
+
+  // ------------------------------------------------------------------ item quiz
+  const quiz = { qs: [], i: 0, score: 0, mode: 'reading', answered: false, wrong: [], active: false };
+
+  function setQuizMode(mode) {
+    $$('.qmode').forEach(b => b.classList.toggle('active', b.dataset.qmode === mode));
+    $('#quiz-settings').classList.toggle('hidden', mode !== 'item');
+    $('#bignum-quiz-settings').classList.toggle('hidden', mode !== 'bignum');
+    $('#quiz-stage').classList.add('hidden');
+    $('#quiz-done').classList.add('hidden');
+  }
+  $$('.qmode').forEach(b => b.addEventListener('click', () => setQuizMode(b.dataset.qmode)));
+
+  async function quizStart() {
+    const category = $('#quiz-cat').value, subcategory = $('#quiz-sub').value, mode = $('#quiz-mode').value,
+      n = $('#quiz-n').value, pool = $('#quiz-pool').value;
+    let data;
+    try { data = await api('/quiz', { category, subcategory, mode, n, pool }); } catch (e) { toast(e.message); return; }
+    Object.assign(quiz, { qs: data.questions, i: 0, score: 0, mode, wrong: [], active: true, answered: false, kind: 'item' });
+    $('#quiz-settings').classList.add('hidden');
+    $('#bignum-quiz-settings').classList.add('hidden');
+    $('#quiz-done').classList.add('hidden');
+    $('#quiz-stage').classList.remove('hidden');
+    quizRender();
+  }
+
+  async function bignumQuizStart() {
+    const level = $('#bignum-level').value, n = $('#bignum-n').value;
+    let data;
+    try { data = await api('/bignum/quiz', { level, n }); } catch (e) { toast(e.message); return; }
+    const qs = data.questions.map(q => ({ prompt: q.display, choices: q.choices, answer: q.answer, number: q.number }));
+    Object.assign(quiz, { qs, i: 0, score: 0, mode: 'bignum', wrong: [], active: true, answered: false, kind: 'bignum' });
+    $('#quiz-settings').classList.add('hidden');
+    $('#bignum-quiz-settings').classList.add('hidden');
+    $('#quiz-done').classList.add('hidden');
+    $('#quiz-stage').classList.remove('hidden');
+    quizRender();
+  }
+
+  function quizRender() {
+    const q = quiz.qs[quiz.i];
+    quiz.answered = false;
+    $('#quiz-bar').style.width = (quiz.i / quiz.qs.length * 100) + '%';
+    $('#quiz-pos').textContent = `${quiz.i + 1} / ${quiz.qs.length}`;
+    $('#quiz-score').textContent = `정답 ${quiz.score}`;
+    const prompt = $('#quiz-prompt');
+    if (quiz.kind === 'bignum') {
+      prompt.innerHTML = `<div class="big">${esc(q.prompt)}</div><div class="sub">이 숫자를 히라가나로 읽으면?</div>`;
+    } else if (quiz.mode === 'reading') {
+      prompt.innerHTML = `<div class="big" lang="ja">${esc(q.prompt)}</div><div class="sub">이 표현의 올바른 읽기는?</div>`;
+    } else {
+      prompt.innerHTML = `<div class="big" lang="ja">${esc(q.prompt)}</div><div class="sub">이 읽기에 해당하는 표현은?</div>`;
+    }
+    $('#quiz-choices').innerHTML = q.choices.map((c, i) => `
+      <button class="choice" data-i="${i}" lang="ja">
+        <span class="idx">${i + 1}</span><span>${esc(c)}</span>
+      </button>`).join('');
+    $('#quiz-reveal').classList.add('hidden');
+    $('#quiz-next').classList.add('hidden');
+  }
+
+  async function quizAnswer(i) {
+    if (quiz.answered || !quiz.active) return;
+    quiz.answered = true;
+    const q = quiz.qs[quiz.i];
+    const correct = i === q.answer;
+    if (correct) quiz.score++; else quiz.wrong.push(q);
+    $$('#quiz-choices .choice').forEach(b => {
+      b.disabled = true;
+      const bi = Number(b.dataset.i);
+      if (bi === q.answer) b.classList.add('correct');
+      else if (bi === i) b.classList.add('wrong');
+    });
+    $('#quiz-score').textContent = `정답 ${quiz.score}`;
+    if (quiz.kind === 'bignum') {
+      $('#quiz-reveal').innerHTML = `<div class="big">${esc(q.prompt)} = <span lang="ja">${esc(q.choices[q.answer])}</span></div>`;
+    } else {
+      const it = q.item;
+      $('#quiz-reveal').innerHTML = `<div class="big" lang="ja">${esc(it.prompt)} / ${esc(it.reading)}</div><div>${badgesHtml(it)}</div><div class="korean">${esc(it.korean)}</div>${it.note ? `<div class="note-line">${esc(it.note)}</div>` : ''}`;
+      api('/quiz/answer', { id: it.id, correct }, 'POST').catch(e => toast(e.message));
+    }
+    $('#quiz-reveal').classList.remove('hidden');
+    $('#quiz-next').classList.remove('hidden');
+    $('#quiz-next').textContent = quiz.i + 1 < quiz.qs.length ? '다음' : '결과 보기';
+    $('#quiz-next').insertAdjacentHTML('beforeend', ' <kbd>Enter</kbd>');
+  }
+
+  function quizNext() {
+    if (!quiz.answered) return;
+    quiz.i++;
+    if (quiz.i < quiz.qs.length) { quizRender(); return; }
+    quiz.active = false;
+    $('#quiz-stage').classList.add('hidden');
+    const pct = Math.round(quiz.score / quiz.qs.length * 100);
+    $('#quiz-done').classList.remove('hidden');
+    $('#quiz-done').innerHTML = `<h2>결과: ${quiz.score} / ${quiz.qs.length} (${pct}%)</h2>
+      ${quiz.wrong.length ? `<p>틀린 문제 ${quiz.wrong.length}개</p><div class="result-list">${quiz.wrong.map(q =>
+        quiz.kind === 'bignum'
+          ? `<span class="badge">${esc(q.prompt)} = ${esc(q.choices[q.answer])}</span>`
+          : `<button class="tile st-learning" data-id="${esc(q.item.id)}"><span class="k" lang="ja">${esc(q.item.prompt)}</span><span class="r" lang="ja">${esc(q.item.reading)}</span></button>`).join('')}</div>`
+        : '<p>모두 정답입니다! 🎉</p>'}
+      <div class="actions"><button class="primary" id="quiz-again">같은 설정으로 다시</button><button id="quiz-settings-btn">설정으로</button></div>`;
+    $('#quiz-again').onclick = quiz.kind === 'bignum' ? bignumQuizStart : quizStart;
+    $('#quiz-settings-btn').onclick = () => {
+      $('#quiz-done').classList.add('hidden');
+      setQuizMode(quiz.kind);
+    };
+    $('#quiz-done').querySelectorAll('.tile').forEach(t => t.onclick = () => openDetail(t.dataset.id));
+  }
+
+  $('#quiz-start').addEventListener('click', quizStart);
+  $('#bignum-quiz-start').addEventListener('click', bignumQuizStart);
+  $('#quiz-choices').addEventListener('click', e => {
+    const b = e.target.closest('.choice');
+    if (b) quizAnswer(Number(b.dataset.i));
+  });
+  $('#quiz-next').addEventListener('click', quizNext);
+  onShow.quiz = params => {
+    if (params.has('category')) $('#quiz-cat').value = params.get('category');
+    fillSubSelect($('#quiz-cat'), $('#quiz-sub'));
+  };
+
+  // ------------------------------------------------------------------ dictation (item + bignum)
+  const wr = { items: [], i: 0, active: false, right: 0, wrong: 0, kind: 'item', cur: null, checked: false };
+
+  function setWriteMode(mode) {
+    $$('.wmode').forEach(b => b.classList.toggle('active', b.dataset.wmode === mode));
+    $('#write-settings').classList.toggle('hidden', mode !== 'item');
+    $('#bignum-write-settings').classList.toggle('hidden', mode !== 'bignum');
+    $('#write-stage').classList.add('hidden');
+    $('#write-done').classList.add('hidden');
+  }
+  $$('.wmode').forEach(b => b.addEventListener('click', () => setWriteMode(b.dataset.wmode)));
+
+  async function writeStart() {
+    const category = $('#write-cat').value, subcategory = $('#write-sub').value,
+      source = $('#write-source').value, n = Number($('#write-n').value);
+    let items = [];
+    try {
+      if (source === 'due') {
+        const d = await api('/review/next', { category, subcategory, limit: n, new: Math.ceil(n / 2) });
+        items = d.items;
+      } else {
+        const status = source === 'random' ? 'all' : source;
+        const d = await api('/items', { category, subcategory, status });
+        items = source === 'new' ? d.items.slice(0, n) : shuffle(d.items).slice(0, n);
+      }
+    } catch (e) { toast(e.message); return; }
+    if (!items.length) { toast('조건에 맞는 항목이 없습니다.'); return; }
+    Object.assign(wr, { items, i: 0, right: 0, wrong: 0, active: true, kind: 'item' });
+    $('#write-settings').classList.add('hidden');
+    $('#bignum-write-settings').classList.add('hidden');
+    $('#write-done').classList.add('hidden');
+    $('#write-stage').classList.remove('hidden');
+    writeRenderItem();
+  }
+
+  function writeRenderItem() {
+    if (wr.i >= wr.items.length) { writeFinish(); return; }
+    wr.cur = wr.items[wr.i];
+    wr.checked = false;
+    const it = wr.cur;
+    $('#write-bar').style.width = (wr.i / wr.items.length * 100) + '%';
+    $('#write-pos').textContent = `${wr.i + 1} / ${wr.items.length}`;
+    $('#write-tag').textContent = subLabel(it.subcategory);
+    $('#write-prompt-text').innerHTML = `<span lang="ja">${esc(it.prompt)}</span>`;
+    $('#write-prompt-sub').textContent = it.korean;
+    resetWriteInput();
+  }
+
+  async function bignumWriteStart() {
+    const level = $('#bw-level').value, n = Number($('#bw-n').value);
+    const ranges = { 2: [10, 99], 3: [100, 999], 4: [1000, 9999], man: [10000, 99999999], oku: [100000000, 999999999999] };
+    const [min, max] = ranges[level];
+    const items = [];
+    for (let i = 0; i < n; i++) items.push(Math.floor(min + Math.random() * (max - min + 1)));
+    Object.assign(wr, { items, i: 0, right: 0, wrong: 0, active: true, kind: 'bignum' });
+    $('#write-settings').classList.add('hidden');
+    $('#bignum-write-settings').classList.add('hidden');
+    $('#write-done').classList.add('hidden');
+    $('#write-stage').classList.remove('hidden');
+    writeRenderBignum();
+  }
+
+  function writeRenderBignum() {
+    if (wr.i >= wr.items.length) { writeFinish(); return; }
+    const n = wr.items[wr.i];
+    wr.cur = n;
+    wr.checked = false;
+    $('#write-bar').style.width = (wr.i / wr.items.length * 100) + '%';
+    $('#write-pos').textContent = `${wr.i + 1} / ${wr.items.length}`;
+    $('#write-tag').textContent = '큰 수 읽기';
+    $('#write-prompt-text').innerHTML = n.toLocaleString('en-US');
+    $('#write-prompt-sub').textContent = '이 숫자를 히라가나로 입력하세요';
+    resetWriteInput();
+  }
+
+  function resetWriteInput() {
+    $('#write-input').value = '';
+    $('#write-input').disabled = false;
+    $('#write-result').classList.add('hidden');
+    $('#write-next-row').classList.add('hidden');
+    $('#write-input').focus();
+  }
+
+  async function writeCheck() {
+    if (wr.checked || !wr.active) return;
+    const typed = $('#write-input').value.trim();
+    if (!typed) { toast('읽기를 입력하세요'); return; }
+    wr.checked = true;
+    $('#write-input').disabled = true;
+    let res;
+    try {
+      if (wr.kind === 'item') res = await api('/dictation/check', { id: wr.cur.id, reading: typed }, 'POST');
+      else res = await api('/bignum/check', { number: wr.cur, reading: typed }, 'POST');
+    } catch (e) { toast(e.message); wr.checked = false; $('#write-input').disabled = false; return; }
+    if (res.correct) wr.right++; else wr.wrong++;
+    const box = $('#write-result');
+    box.classList.remove('hidden');
+    box.classList.toggle('ok', res.correct);
+    box.classList.toggle('bad', !res.correct);
+    let html = res.correct ? '정답입니다! ✅' : `틀렸습니다. ❌ <div class="expected" lang="ja">${esc(res.expected)}</div>`;
+    if (wr.kind === 'bignum' && res.breakdown) {
+      html += `<div class="steps">${res.breakdown.map(s => `<div>${esc(s)}</div>`).join('')}</div>`;
+    } else if (wr.kind === 'item' && wr.cur.note) {
+      html += `<div class="note-line">${esc(wr.cur.note)}</div>`;
+    }
+    box.innerHTML = html;
+    $('#write-next-row').classList.remove('hidden');
+  }
+
+  function writeNext() {
+    if (!wr.checked) return;
+    wr.i++;
+    if (wr.kind === 'item') writeRenderItem(); else writeRenderBignum();
+  }
+
+  function writeFinish() {
+    wr.active = false;
+    $('#write-stage').classList.add('hidden');
+    $('#write-done').classList.remove('hidden');
+    $('#write-done').innerHTML = `<h2>받아쓰기 완료 ✍️</h2><p>${wr.items.length}개 · 정답 ${wr.right} · 오답 ${wr.wrong}</p>
+      <div class="actions"><button class="primary" id="write-again">다시 시작</button><button id="write-settings-btn">설정으로</button></div>`;
+    $('#write-again').onclick = wr.kind === 'item' ? writeStart : bignumWriteStart;
+    $('#write-settings-btn').onclick = () => { $('#write-done').classList.add('hidden'); setWriteMode(wr.kind); };
+  }
+
+  $('#write-start').addEventListener('click', writeStart);
+  $('#bw-start').addEventListener('click', bignumWriteStart);
+  $('#write-check').addEventListener('click', writeCheck);
+  $('#write-next').addEventListener('click', writeNext);
+  $('#write-quit').addEventListener('click', () => { wr.items = wr.items.slice(0, wr.i); writeFinish(); });
+  $('#write-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') { if (!wr.checked) writeCheck(); else writeNext(); }
+  });
+  onShow.write = params => {
+    if (params.has('category')) $('#write-cat').value = params.get('category');
+    fillSubSelect($('#write-cat'), $('#write-sub'));
+  };
+
+  // ------------------------------------------------------------------ keyboard shortcuts
+  document.addEventListener('keydown', e => {
+    if (e.target.matches('input, select, textarea')) return;
+    if (!$('#modal').classList.contains('hidden')) { if (e.key === 'Escape') closeModal(); return; }
+    if (currentView === 'flash' && flash.active) {
+      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flashFlip(); }
+      else if (['1', '2', '3', '4'].includes(e.key) && flash.flipped) flashRate([1, 3, 4, 5][Number(e.key) - 1]);
+    } else if (currentView === 'quiz' && quiz.active) {
+      if (['1', '2', '3', '4'].includes(e.key) && !quiz.answered) quizAnswer(Number(e.key) - 1);
+      else if ((e.key === 'Enter' || e.key === ' ') && quiz.answered) { e.preventDefault(); quizNext(); }
+    }
+  });
+
+  // ------------------------------------------------------------------ boot
+  loadCatalog().then(() => {
+    fillCatSelects();
+    route();
+  }).catch(e => { toast('초기화 실패: ' + e.message); route(); });
+})();
+
+</script>
+</body>
+</html>
