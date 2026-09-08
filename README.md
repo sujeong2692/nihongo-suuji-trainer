@@ -1,8 +1,9 @@
 # 일본어 숫자 집중 암기 (Nihongo Suuji Trainer)
 
 일본어 **숫자**만 집중적으로 공부하는 웹앱입니다. 순수 Java(JDK 17+)로 작성했고 외부 라이브러리가 전혀 없습니다.
-서버는 JDK 내장 `com.sun.net.httpserver.HttpServer`, 화면은 바닐라 HTML/CSS/JS입니다. 같은 시리즈의
-[常用漢字 집중 학습](https://github.com/sujeong2692/joyo-kanji-trainer) 앱과 동일한 구조로 만들었습니다.
+서버는 JDK 내장 `com.sun.net.httpserver.HttpServer`, 화면은 바닐라 HTML/CSS/JS입니다.
+
+같은 시리즈: [常用漢字 집중 학습](https://github.com/sujeong2692/joyo-kanji-trainer) · [일본어 조사 트레이너](https://github.com/sujeong2692/nihongo-josa-trainer) (동일한 구조로 만들었습니다)
 
 ## 다루는 범위
 
