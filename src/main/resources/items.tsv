@@ -1,0 +1,329 @@
+basic-on-0a	basic	onyomi	0	ぜろ	숫자 0 (ゼロ)	
+basic-on-0b	basic	onyomi	0	れい	숫자 0 (れい, 격식체)	
+basic-on-1	basic	onyomi	1	いち	숫자 1	
+basic-on-2	basic	onyomi	2	に	숫자 2	
+basic-on-3	basic	onyomi	3	さん	숫자 3	
+basic-on-4a	basic	onyomi	4	よん	숫자 4 (よん)	
+basic-on-4b	basic	onyomi	4	し	숫자 4 (し)	
+basic-on-5	basic	onyomi	5	ご	숫자 5	
+basic-on-6	basic	onyomi	6	ろく	숫자 6	
+basic-on-7a	basic	onyomi	7	なな	숫자 7 (なな)	
+basic-on-7b	basic	onyomi	7	しち	숫자 7 (しち)	
+basic-on-8	basic	onyomi	8	はち	숫자 8	
+basic-on-9a	basic	onyomi	9	きゅう	숫자 9 (きゅう)	
+basic-on-9b	basic	onyomi	9	く	숫자 9 (く)	
+basic-on-10	basic	onyomi	10	じゅう	숫자 10	
+basic-on-100	basic	onyomi	100	ひゃく	숫자 100 (백)	
+basic-on-1000	basic	onyomi	1000	せん	숫자 1000 (천)	
+basic-on-10000	basic	onyomi	10000	いちまん	숫자 10000 (1만)	
+basic-on-100000000	basic	onyomi	100000000	いちおく	숫자 100000000 (1억)	
+basic-on-1000000000000	basic	onyomi	1000000000000	いっちょう	숫자 1000000000000 (1조)	촉음화: いち+ちょう→いっちょう
+wago-1	wago	native	1	ひとつ	물건 1개(고유어)	
+wago-2	wago	native	2	ふたつ	물건 2개(고유어)	
+wago-3	wago	native	3	みっつ	물건 3개(고유어)	
+wago-4	wago	native	4	よっつ	물건 4개(고유어)	
+wago-5	wago	native	5	いつつ	물건 5개(고유어)	
+wago-6	wago	native	6	むっつ	물건 6개(고유어)	
+wago-7	wago	native	7	ななつ	물건 7개(고유어)	
+wago-8	wago	native	8	やっつ	물건 8개(고유어)	
+wago-9	wago	native	9	ここのつ	물건 9개(고유어)	
+wago-10	wago	native	10	とお	물건 10개(고유어)	
+wago-ikutsu	wago	native	いくつ(개수)	いくつ	몇 개?	
+wago-hatachi	wago	native	20歳	はたち	스무 살 (20세, 불규칙)	はたち는 20세 전용 불규칙 표현
+place-juu-10	place	juu	10	じゅう	10 (십)	
+place-juu-20	place	juu	20	にじゅう	20 (이십)	
+place-juu-30	place	juu	30	さんじゅう	30 (삼십)	
+place-juu-40	place	juu	40	よんじゅう	40 (사십)	
+place-juu-50	place	juu	50	ごじゅう	50 (오십)	
+place-juu-60	place	juu	60	ろくじゅう	60 (육십)	
+place-juu-70	place	juu	70	ななじゅう	70 (칠십)	
+place-juu-80	place	juu	80	はちじゅう	80 (팔십)	
+place-juu-90	place	juu	90	きゅうじゅう	90 (구십)	
+place-hyaku-100	place	hyaku	100	ひゃく	100 (백)	
+place-hyaku-200	place	hyaku	200	にひゃく	200 (이백)	
+place-hyaku-300	place	hyaku	300	さんびゃく	300 (삼백)	탁음화: ひゃく→びゃく
+place-hyaku-400	place	hyaku	400	よんひゃく	400 (사백)	
+place-hyaku-500	place	hyaku	500	ごひゃく	500 (오백)	
+place-hyaku-600	place	hyaku	600	ろっぴゃく	600 (육백)	촉음화+반탁음화: ろく+ひゃく→ろっぴゃく
+place-hyaku-700	place	hyaku	700	ななひゃく	700 (칠백)	
+place-hyaku-800	place	hyaku	800	はっぴゃく	800 (팔백)	촉음화+반탁음화: はち+ひゃく→はっぴゃく
+place-hyaku-900	place	hyaku	900	きゅうひゃく	900 (구백)	
+place-sen-1000	place	sen	1000	せん	1000 (천)	
+place-sen-2000	place	sen	2000	にせん	2000 (이천)	
+place-sen-3000	place	sen	3000	さんぜん	3000 (삼천)	탁음화: せん→ぜん
+place-sen-4000	place	sen	4000	よんせん	4000 (사천)	
+place-sen-5000	place	sen	5000	ごせん	5000 (오천)	
+place-sen-6000	place	sen	6000	ろくせん	6000 (육천)	
+place-sen-7000	place	sen	7000	ななせん	7000 (칠천)	
+place-sen-8000	place	sen	8000	はっせん	8000 (팔천)	촉음화: はち+せん→はっせん
+place-sen-9000	place	sen	9000	きゅうせん	9000 (구천)	
+place-man-10000	place	man	10000	いちまん	10000 (1만)	
+place-man-20000	place	man	20000	にまん	20000 (2만)	
+place-man-30000	place	man	30000	さんまん	30000 (3만)	
+place-man-40000	place	man	40000	よんまん	40000 (4만)	
+place-man-50000	place	man	50000	ごまん	50000 (5만)	
+place-man-60000	place	man	60000	ろくまん	60000 (6만)	
+place-man-70000	place	man	70000	ななまん	70000 (7만)	
+place-man-80000	place	man	80000	はちまん	80000 (8만)	
+place-man-90000	place	man	90000	きゅうまん	90000 (9만)	
+age-1	age	sai	1歳	いっさい	1세	촉음화: いち+さい→いっさい
+age-2	age	sai	2歳	にさい	2세	
+age-3	age	sai	3歳	さんさい	3세	
+age-4	age	sai	4歳	よんさい	4세	
+age-5	age	sai	5歳	ごさい	5세	
+age-6	age	sai	6歳	ろくさい	6세	
+age-7	age	sai	7歳	ななさい	7세	
+age-8	age	sai	8歳	はっさい	8세	촉음화: はち+さい→はっさい
+age-9	age	sai	9歳	きゅうさい	9세	
+age-10	age	sai	10歳	じゅっさい	10세	じっさい도 가능(전통적 표기)
+age-30	age	sai	30歳	さんじゅっさい	30세	촉음화: じゅう+さい→じゅっさい
+age-40	age	sai	40歳	よんじゅっさい	40세	촉음화: じゅう+さい→じゅっさい
+age-50	age	sai	50歳	ごじゅっさい	50세	촉음화: じゅう+さい→じゅっさい
+age-60	age	sai	60歳	ろくじゅっさい	60세	촉음화: じゅう+さい→じゅっさい
+age-70	age	sai	70歳	ななじゅっさい	70세	촉음화: じゅう+さい→じゅっさい
+age-80	age	sai	80歳	はちじゅっさい	80세	촉음화: じゅう+さい→じゅっさい
+age-90	age	sai	90歳	きゅうじゅっさい	90세	촉음화: じゅう+さい→じゅっさい
+age-100	age	sai	100歳	ひゃくさい	100세	
+age-nansai	age	sai	何歳	なんさい	몇 살?	
+date-day-1	date	day	1日	ついたち	1일	고유 훈독(불규칙)
+date-day-2	date	day	2日	ふつか	2일	고유 훈독(불규칙)
+date-day-3	date	day	3日	みっか	3일	고유 훈독(불규칙)
+date-day-4	date	day	4日	よっか	4일	고유 훈독(불규칙)
+date-day-5	date	day	5日	いつか	5일	고유 훈독(불규칙)
+date-day-6	date	day	6日	むいか	6일	고유 훈독(불규칙)
+date-day-7	date	day	7日	なのか	7일	고유 훈독(불규칙)
+date-day-8	date	day	8日	ようか	8일	고유 훈독(불규칙)
+date-day-9	date	day	9日	ここのか	9일	고유 훈독(불규칙)
+date-day-10	date	day	10日	とおか	10일	고유 훈독(불규칙)
+date-day-11	date	day	11日	じゅういちにち	11일	
+date-day-12	date	day	12日	じゅうににち	12일	
+date-day-13	date	day	13日	じゅうさんにち	13일	
+date-day-14	date	day	14日	じゅうよっか	14일	고유 훈독(불규칙)
+date-day-15	date	day	15日	じゅうごにち	15일	
+date-day-16	date	day	16日	じゅうろくにち	16일	
+date-day-17	date	day	17日	じゅうしちにち	17일	しち로 읽음(なな 아님)
+date-day-18	date	day	18日	じゅうはちにち	18일	
+date-day-19	date	day	19日	じゅうくにち	19일	く로 읽음(きゅう 아님)
+date-day-20	date	day	20日	はつか	20일	고유 훈독(불규칙)
+date-day-21	date	day	21日	にじゅういちにち	21일	
+date-day-22	date	day	22日	にじゅうににち	22일	
+date-day-23	date	day	23日	にじゅうさんにち	23일	
+date-day-24	date	day	24日	にじゅうよっか	24일	고유 훈독(불규칙)
+date-day-25	date	day	25日	にじゅうごにち	25일	
+date-day-26	date	day	26日	にじゅうろくにち	26일	
+date-day-27	date	day	27日	にじゅうしちにち	27일	
+date-day-28	date	day	28日	にじゅうはちにち	28일	
+date-day-29	date	day	29日	にじゅうくにち	29일	
+date-day-30	date	day	30日	さんじゅうにち	30일	
+date-day-31	date	day	31日	さんじゅういちにち	31일	
+date-day-nan	date	day	何日	なんにち	며칠?/몇 일?	
+date-month-1	date	month	1月	いちがつ	1월	
+date-month-2	date	month	2月	にがつ	2월	
+date-month-3	date	month	3月	さんがつ	3월	
+date-month-4	date	month	4月	しがつ	4월	불규칙 발음
+date-month-5	date	month	5月	ごがつ	5월	
+date-month-6	date	month	6月	ろくがつ	6월	
+date-month-7	date	month	7月	しちがつ	7월	불규칙 발음
+date-month-8	date	month	8月	はちがつ	8월	
+date-month-9	date	month	9月	くがつ	9월	불규칙 발음
+date-month-10	date	month	10月	じゅうがつ	10월	
+date-month-11	date	month	11月	じゅういちがつ	11월	
+date-month-12	date	month	12月	じゅうにがつ	12월	
+date-month-nan	date	month	何月	なんがつ	몇 월?	
+date-weekday-mon	date	weekday	月曜日	げつようび	월요일	
+date-weekday-tue	date	weekday	火曜日	かようび	화요일	
+date-weekday-wed	date	weekday	水曜日	すいようび	수요일	
+date-weekday-thu	date	weekday	木曜日	もくようび	목요일	
+date-weekday-fri	date	weekday	金曜日	きんようび	금요일	
+date-weekday-sat	date	weekday	土曜日	どようび	토요일	
+date-weekday-sun	date	weekday	日曜日	にちようび	일요일	
+date-weekday-nan	date	weekday	何曜日	なんようび	무슨 요일?	
+time-hour-1	time	hour	1時	いちじ	1시	
+time-hour-2	time	hour	2時	にじ	2시	
+time-hour-3	time	hour	3時	さんじ	3시	
+time-hour-4	time	hour	4時	よじ	4시	불규칙 발음
+time-hour-5	time	hour	5時	ごじ	5시	
+time-hour-6	time	hour	6時	ろくじ	6시	
+time-hour-7	time	hour	7時	しちじ	7시	불규칙 발음
+time-hour-8	time	hour	8時	はちじ	8시	
+time-hour-9	time	hour	9時	くじ	9시	불규칙 발음
+time-hour-10	time	hour	10時	じゅうじ	10시	
+time-hour-11	time	hour	11時	じゅういちじ	11시	
+time-hour-12	time	hour	12時	じゅうにじ	12시	
+time-hour-nan	time	hour	何時	なんじ	몇 시?	
+time-minute-1	time	minute	1分	いっぷん	1분	촉음+반탁음(ふ→ぷ)
+time-minute-2	time	minute	2分	にふん	2분	
+time-minute-3	time	minute	3分	さんぷん	3분	반탁음(ふ→ぷ)
+time-minute-4	time	minute	4分	よんぷん	4분	반탁음(ふ→ぷ)
+time-minute-5	time	minute	5分	ごふん	5분	
+time-minute-6	time	minute	6分	ろっぷん	6분	촉음+반탁음(ふ→ぷ)
+time-minute-7	time	minute	7分	ななふん	7분	
+time-minute-8	time	minute	8分	はっぷん	8분	촉음+반탁음(ふ→ぷ)
+time-minute-9	time	minute	9分	きゅうふん	9분	
+time-minute-10	time	minute	10分	じゅっぷん	10분	촉음+반탁음(ふ→ぷ), じっぷん도 허용
+time-minute-15	time	minute	15分	じゅうごふん	15분	
+time-minute-20	time	minute	20分	にじゅっぷん	20분	촉음+반탁음(ふ→ぷ)
+time-minute-30	time	minute	30分	さんじゅっぷん	30분	촉음+반탁음(ふ→ぷ)
+time-minute-han	time	minute	30分(半)	はん	30분(반)	半(はん)으로도 표현
+time-minute-40	time	minute	40分	よんじゅっぷん	40분	
+time-minute-50	time	minute	50分	ごじゅっぷん	50분	
+time-minute-60	time	minute	60分	ろくじゅっぷん	60분	
+time-minute-nan	time	minute	何分	なんぷん	몇 분?	
+time-second-1	time	second	1秒	いちびょう	1초	
+time-second-nan	time	second	何秒	なんびょう	몇 초?	
+time-second-30	time	second	30秒	さんじゅうびょう	30초	
+counter-hon-1	counter	hon	1本	いっぽん	연필 등 가늘고 긴 것 1개	촉음화+반탁음화(っ+h→p)
+counter-hon-2	counter	hon	2本	にほん	연필 등 가늘고 긴 것 2개	
+counter-hon-3	counter	hon	3本	さんぼん	연필 등 가늘고 긴 것 3개	탁음화(ん+h→b)
+counter-hon-4	counter	hon	4本	よんほん	연필 등 가늘고 긴 것 4개	
+counter-hon-5	counter	hon	5本	ごほん	연필 등 가늘고 긴 것 5개	
+counter-hon-6	counter	hon	6本	ろっぽん	연필 등 가늘고 긴 것 6개	촉음화+반탁음화(っ+h→p)
+counter-hon-7	counter	hon	7本	ななほん	연필 등 가늘고 긴 것 7개	
+counter-hon-8	counter	hon	8本	はっぽん	연필 등 가늘고 긴 것 8개	촉음화+반탁음화(っ+h→p)
+counter-hon-9	counter	hon	9本	きゅうほん	연필 등 가늘고 긴 것 9개	
+counter-hon-10	counter	hon	10本	じゅっぽん	연필 등 가늘고 긴 것 10개	촉음화+반탁음화(っ+h→p), じっぽん도 허용
+counter-hon-nan	counter	hon	何本	なんぼん	가늘고 긴 것이 몇 개인지 묻는 말	탁음화(ん+h→b)
+counter-mai-1	counter	mai	1枚	いちまい	종이 등 얇고 평평한 것 1장	
+counter-mai-2	counter	mai	2枚	にまい	종이 등 얇고 평평한 것 2장	
+counter-mai-3	counter	mai	3枚	さんまい	종이 등 얇고 평평한 것 3장	
+counter-mai-4	counter	mai	4枚	よんまい	종이 등 얇고 평평한 것 4장	
+counter-mai-5	counter	mai	5枚	ごまい	종이 등 얇고 평평한 것 5장	
+counter-mai-6	counter	mai	6枚	ろくまい	종이 등 얇고 평평한 것 6장	
+counter-mai-7	counter	mai	7枚	ななまい	종이 등 얇고 평평한 것 7장	
+counter-mai-8	counter	mai	8枚	はちまい	종이 등 얇고 평평한 것 8장	
+counter-mai-9	counter	mai	9枚	きゅうまい	종이 등 얇고 평평한 것 9장	
+counter-mai-10	counter	mai	10枚	じゅうまい	종이 등 얇고 평평한 것 10장	
+counter-mai-nan	counter	mai	何枚	なんまい	얇고 평평한 것이 몇 장인지 묻는 말	
+counter-hiki-1	counter	hiki	1匹	いっぴき	작은 동물 1마리	촉음화+반탁음화(っ+h→p)
+counter-hiki-2	counter	hiki	2匹	にひき	작은 동물 2마리	
+counter-hiki-3	counter	hiki	3匹	さんびき	작은 동물 3마리	탁음화(ん+h→b)
+counter-hiki-4	counter	hiki	4匹	よんひき	작은 동물 4마리	
+counter-hiki-5	counter	hiki	5匹	ごひき	작은 동물 5마리	
+counter-hiki-6	counter	hiki	6匹	ろっぴき	작은 동물 6마리	촉음화+반탁음화(っ+h→p)
+counter-hiki-7	counter	hiki	7匹	ななひき	작은 동물 7마리	
+counter-hiki-8	counter	hiki	8匹	はっぴき	작은 동물 8마리	촉음화+반탁음화(っ+h→p)
+counter-hiki-9	counter	hiki	9匹	きゅうひき	작은 동물 9마리	
+counter-hiki-10	counter	hiki	10匹	じゅっぴき	작은 동물 10마리	촉음화+반탁음화(っ+h→p), じっぴき도 허용
+counter-hiki-nan	counter	hiki	何匹	なんびき	작은 동물이 몇 마리인지 묻는 말	탁음화(ん+h→b)
+counter-satsu-1	counter	satsu	1冊	いっさつ	책 등 제본된 것 1권	촉음화
+counter-satsu-2	counter	satsu	2冊	にさつ	책 등 제본된 것 2권	
+counter-satsu-3	counter	satsu	3冊	さんさつ	책 등 제본된 것 3권	
+counter-satsu-4	counter	satsu	4冊	よんさつ	책 등 제본된 것 4권	
+counter-satsu-5	counter	satsu	5冊	ごさつ	책 등 제본된 것 5권	
+counter-satsu-6	counter	satsu	6冊	ろくさつ	책 등 제본된 것 6권	촉음화 없음(예외, 주의)
+counter-satsu-7	counter	satsu	7冊	ななさつ	책 등 제본된 것 7권	
+counter-satsu-8	counter	satsu	8冊	はっさつ	책 등 제본된 것 8권	촉음화
+counter-satsu-9	counter	satsu	9冊	きゅうさつ	책 등 제본된 것 9권	
+counter-satsu-10	counter	satsu	10冊	じゅっさつ	책 등 제본된 것 10권	촉음화, じっさつ도 허용
+counter-satsu-nan	counter	satsu	何冊	なんさつ	책 등이 몇 권인지 묻는 말	
+counter-dai-1	counter	dai	1台	いちだい	기계·차량 1대	
+counter-dai-2	counter	dai	2台	にだい	기계·차량 2대	
+counter-dai-3	counter	dai	3台	さんだい	기계·차량 3대	
+counter-dai-4	counter	dai	4台	よんだい	기계·차량 4대	
+counter-dai-5	counter	dai	5台	ごだい	기계·차량 5대	
+counter-dai-6	counter	dai	6台	ろくだい	기계·차량 6대	
+counter-dai-7	counter	dai	7台	ななだい	기계·차량 7대	
+counter-dai-8	counter	dai	8台	はちだい	기계·차량 8대	
+counter-dai-9	counter	dai	9台	きゅうだい	기계·차량 9대	
+counter-dai-10	counter	dai	10台	じゅうだい	기계·차량 10대	
+counter-dai-nan	counter	dai	何台	なんだい	기계·차량이 몇 대인지 묻는 말	
+counter-kai-floor-1	counter	kai-floor	1階	いっかい	건물의 1층	촉음화
+counter-kai-floor-2	counter	kai-floor	2階	にかい	건물의 2층	
+counter-kai-floor-3	counter	kai-floor	3階	さんがい	건물의 3층	탁음화(불규칙, さんかい 아님)
+counter-kai-floor-4	counter	kai-floor	4階	よんかい	건물의 4층	
+counter-kai-floor-5	counter	kai-floor	5階	ごかい	건물의 5층	
+counter-kai-floor-6	counter	kai-floor	6階	ろっかい	건물의 6층	촉음화
+counter-kai-floor-7	counter	kai-floor	7階	ななかい	건물의 7층	
+counter-kai-floor-8	counter	kai-floor	8階	はっかい	건물의 8층	촉음화
+counter-kai-floor-9	counter	kai-floor	9階	きゅうかい	건물의 9층	
+counter-kai-floor-10	counter	kai-floor	10階	じゅっかい	건물의 10층	촉음화, じっかい도 허용
+counter-kai-floor-nan	counter	kai-floor	何階	なんがい	몇 층인지 묻는 말	탁음화(불규칙), 회화체에서 なんかい도 사용
+counter-hai-1	counter	hai	1杯	いっぱい	잔·그릇에 담긴 것 1잔	촉음화+반탁음화(っ+h→p)
+counter-hai-2	counter	hai	2杯	にはい	잔·그릇에 담긴 것 2잔	
+counter-hai-3	counter	hai	3杯	さんばい	잔·그릇에 담긴 것 3잔	탁음화(ん+h→b)
+counter-hai-4	counter	hai	4杯	よんはい	잔·그릇에 담긴 것 4잔	
+counter-hai-5	counter	hai	5杯	ごはい	잔·그릇에 담긴 것 5잔	
+counter-hai-6	counter	hai	6杯	ろっぱい	잔·그릇에 담긴 것 6잔	촉음화+반탁음화(っ+h→p)
+counter-hai-7	counter	hai	7杯	ななはい	잔·그릇에 담긴 것 7잔	
+counter-hai-8	counter	hai	8杯	はっぱい	잔·그릇에 담긴 것 8잔	촉음화+반탁음화(っ+h→p)
+counter-hai-9	counter	hai	9杯	きゅうはい	잔·그릇에 담긴 것 9잔	
+counter-hai-10	counter	hai	10杯	じゅっぱい	잔·그릇에 담긴 것 10잔	촉음화+반탁음화(っ+h→p), じっぱい도 허용
+counter-hai-nan	counter	hai	何杯	なんばい	몇 잔인지 묻는 말	탁음화(ん+h→b)
+counter-kai-times-1	counter	kai-times	1回	いっかい	1회	촉음화
+counter-kai-times-2	counter	kai-times	2回	にかい	2회	
+counter-kai-times-3	counter	kai-times	3回	さんかい	3회	
+counter-kai-times-4	counter	kai-times	4回	よんかい	4회	
+counter-kai-times-5	counter	kai-times	5回	ごかい	5회	
+counter-kai-times-6	counter	kai-times	6回	ろっかい	6회	촉음화
+counter-kai-times-7	counter	kai-times	7回	ななかい	7회	
+counter-kai-times-8	counter	kai-times	8回	はっかい	8회	촉음화
+counter-kai-times-9	counter	kai-times	9回	きゅうかい	9회	
+counter-kai-times-10	counter	kai-times	10回	じゅっかい	10회	촉음화, じっかい도 허용
+counter-kai-times-nan	counter	kai-times	何回	なんかい	몇 회(번)인지 묻는 말	
+counter-hito-1	counter	hito	1人	ひとり	사람 1명	고유어 특수형(불규칙)
+counter-hito-2	counter	hito	2人	ふたり	사람 2명	고유어 특수형(불규칙)
+counter-hito-3	counter	hito	3人	さんにん	사람 3명	
+counter-hito-4	counter	hito	4人	よにん	사람 4명	불규칙(よんにん 아님, 주의)
+counter-hito-5	counter	hito	5人	ごにん	사람 5명	
+counter-hito-6	counter	hito	6人	ろくにん	사람 6명	
+counter-hito-7	counter	hito	7人	しちにん	사람 7명	ななにん도 사용됨
+counter-hito-8	counter	hito	8人	はちにん	사람 8명	
+counter-hito-9	counter	hito	9人	きゅうにん	사람 9명	くにん(예스러운 표현)도 사용
+counter-hito-10	counter	hito	10人	じゅうにん	사람 10명	
+counter-hito-11	counter	hito	11人	じゅういちにん	사람 11명	
+counter-hito-nan	counter	hito	何人	なんにん	몇 명인지 묻는 말	
+counter-wa-1	counter	wa	1羽	いちわ	새·토끼 등 1마리	
+counter-wa-2	counter	wa	2羽	にわ	새·토끼 등 2마리	
+counter-wa-3	counter	wa	3羽	さんわ	새·토끼 등 3마리	전통적으로 さんば로도 사용(확인 필요)
+counter-wa-4	counter	wa	4羽	よんわ	새·토끼 등 4마리	
+counter-wa-5	counter	wa	5羽	ごわ	새·토끼 등 5마리	
+counter-wa-6	counter	wa	6羽	ろくわ	새·토끼 등 6마리	일부 자료는 ろっぱ로도 소개(확인 필요)
+counter-wa-7	counter	wa	7羽	ななわ	새·토끼 등 7마리	
+counter-wa-8	counter	wa	8羽	はちわ	새·토끼 등 8마리	일부 자료는 はっぱ로 소개하나 표준은 はちわ(확인 필요)
+counter-wa-9	counter	wa	9羽	きゅうわ	새·토끼 등 9마리	
+counter-wa-10	counter	wa	10羽	じゅうわ	새·토끼 등 10마리	일부 자료는 じゅっぱ로도 소개(확인 필요)
+counter-wa-nan	counter	wa	何羽	なんわ	새 등이 몇 마리인지 묻는 말	
+counter-tou-1	counter	tou	1頭	いっとう	큰 동물 1마리	촉음화
+counter-tou-2	counter	tou	2頭	にとう	큰 동물 2마리	
+counter-tou-3	counter	tou	3頭	さんとう	큰 동물 3마리	
+counter-tou-4	counter	tou	4頭	よんとう	큰 동물 4마리	
+counter-tou-5	counter	tou	5頭	ごとう	큰 동물 5마리	
+counter-tou-6	counter	tou	6頭	ろくとう	큰 동물 6마리	
+counter-tou-7	counter	tou	7頭	ななとう	큰 동물 7마리	
+counter-tou-8	counter	tou	8頭	はっとう	큰 동물 8마리	촉음화
+counter-tou-9	counter	tou	9頭	きゅうとう	큰 동물 9마리	
+counter-tou-10	counter	tou	10頭	じゅっとう	큰 동물 10마리	촉음화, じっとう도 허용
+counter-tou-nan	counter	tou	何頭	なんとう	큰 동물이 몇 마리인지 묻는 말	
+counter-ko-1	counter	ko	1個	いっこ	물건 1개	촉음화
+counter-ko-2	counter	ko	2個	にこ	물건 2개	
+counter-ko-3	counter	ko	3個	さんこ	물건 3개	
+counter-ko-4	counter	ko	4個	よんこ	물건 4개	
+counter-ko-5	counter	ko	5個	ごこ	물건 5개	
+counter-ko-6	counter	ko	6個	ろっこ	물건 6개	촉음화
+counter-ko-7	counter	ko	7個	ななこ	물건 7개	
+counter-ko-8	counter	ko	8個	はっこ	물건 8개	촉음화
+counter-ko-9	counter	ko	9個	きゅうこ	물건 9개	
+counter-ko-10	counter	ko	10個	じゅっこ	물건 10개	촉음화, じっこ도 허용
+counter-ko-nan	counter	ko	何個	なんこ	물건이 몇 개인지 묻는 말	
+counter-soku-1	counter	soku	1足	いっそく	신발 등 1켤레	촉음화
+counter-soku-2	counter	soku	2足	にそく	신발 등 2켤레	
+counter-soku-3	counter	soku	3足	さんぞく	신발 등 3켤레	탁음화
+counter-soku-4	counter	soku	4足	よんそく	신발 등 4켤레	
+counter-soku-5	counter	soku	5足	ごそく	신발 등 5켤레	
+counter-soku-6	counter	soku	6足	ろくそく	신발 등 6켤레	
+counter-soku-7	counter	soku	7足	ななそく	신발 등 7켤레	
+counter-soku-8	counter	soku	8足	はっそく	신발 등 8켤레	촉음화
+counter-soku-9	counter	soku	9足	きゅうそく	신발 등 9켤레	
+counter-soku-10	counter	soku	10足	じゅっそく	신발 등 10켤레	촉음화, じっそく도 허용
+counter-soku-nan	counter	soku	何足	なんそく	신발 등이 몇 켤레인지 묻는 말	
+counter-ken-1	counter	ken	1軒	いっけん	집·건물 1채	촉음화
+counter-ken-2	counter	ken	2軒	にけん	집·건물 2채	
+counter-ken-3	counter	ken	3軒	さんげん	집·건물 3채	탁음화(불규칙)
+counter-ken-4	counter	ken	4軒	よんけん	집·건물 4채	
+counter-ken-5	counter	ken	5軒	ごけん	집·건물 5채	
+counter-ken-6	counter	ken	6軒	ろっけん	집·건물 6채	촉음화
+counter-ken-7	counter	ken	7軒	ななけん	집·건물 7채	
+counter-ken-8	counter	ken	8軒	はっけん	집·건물 8채	촉음화
+counter-ken-9	counter	ken	9軒	きゅうけん	집·건물 9채	
+counter-ken-10	counter	ken	10軒	じゅっけん	집·건물 10채	촉음화, じっけん도 허용
+counter-ken-nan	counter	ken	何軒	なんげん	집이 몇 채인지 묻는 말	탁음화(불규칙)
