@@ -1,5 +1,7 @@
 # 일본어 숫자 집중 암기 (Nihongo Suuji Trainer)
 
+저장소: https://github.com/sujeong2692/nihongo-suuji-trainer
+
 일본어 **숫자**만 집중적으로 공부하는 웹앱입니다. 순수 Java(JDK 17+)로 작성했고 외부 라이브러리가 전혀 없습니다.
 서버는 JDK 내장 `com.sun.net.httpserver.HttpServer`, 화면은 바닐라 HTML/CSS/JS입니다.
 
